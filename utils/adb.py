@@ -20,6 +20,7 @@ from os.path import exists
 from utils.confloader import ConfLoader
 from utils.helper import handle_home_case, LOG_LEVELS_MAP, get_conf_path
 from utils.logprocessor import LogProcessor, indent_wrap
+from utils.logregex import LogRegex
 from utils.terminalcolor import termcolor, RED, RESET, YELLOW, GREEN, colorize, WHITE, allocate_color
 
 __author__ = 'JacksGong'
@@ -45,8 +46,9 @@ PID_START_DALVIK = re.compile(
 PID_KILL = re.compile(r'^Killing (\d+):([a-zA-Z0-9._:]+)/[^:]+: (.*)$')
 PID_LEAVE = re.compile(r'^No longer want ([a-zA-Z0-9._:]+) \(pid (\d+)\): .*$')
 PID_DEATH = re.compile(r'^Process ([a-zA-Z0-9._:]+) \(pid (\d+)\) has died.?$')
-#                            data   time   level    tag      process       thread   message -----adb logcat -v brief -v time
-ADB_LOG_LINE = re.compile(r'(.\S*) (.\S*) ([A-Z])/([^(]*)\( *(\d*)\): *\[([^]]*)\] (.*?)$')
+
+ADB_LOG_REGEX_EXP = 'data,time,process,thread,level,tag,message="(.\S*) (.\S*) (\d*) (\d*) ([A-Z]) ([^:]*): (.*?)$"'
+
 BUG_LINE = re.compile(r'.*nativeGetEnabledTags.*')
 BACKTRACE_LINE = re.compile(r'^#(.*?)pc\s(.*?)$')
 RULES = {
@@ -64,6 +66,7 @@ class Adb:
     header_size = None
     ignored_tag = None
 
+    log_regex = None
     catchall_package = None
     named_processes = None
     pids = None
@@ -96,12 +99,19 @@ class Adb:
             if yml_package is not None:
                 self.package_name.append(yml_package)
 
+            yml_adb_log_regex = conf_loader.get_adb_log_line_regex()
+            if yml_adb_log_regex is not None:
+                self.log_regex = LogRegex(yml_adb_log_regex)
+
             self.processor.setup_condition(tag_keywords=conf_loader.get_tag_keyword_list())
             self.processor.setup_trans(trans_msg_map=conf_loader.get_trans_msg_map(),
                                        trans_tag_map=conf_loader.get_trans_tag_map(),
                                        hide_msg_list=conf_loader.get_hide_msg_list())
             self.processor.setup_highlight(highlight_list=conf_loader.get_highlight_list())
             self.processor.setup_separator(separator_rex_list=conf_loader.get_separator_regex_list())
+
+        if self.log_regex is None:
+            self.log_regex = LogRegex(ADB_LOG_REGEX_EXP)
 
         base_adb_command = ['adb']
         if args.device_serial:
@@ -142,7 +152,7 @@ class Adb:
         adb_command = base_adb_command[:]
         adb_command.append('logcat')
         adb_command.extend(['-v', 'brief'])
-        adb_command.extend(['-v', 'time'])
+        adb_command.extend(['-v', 'threadtime'])
 
         # Clear log before starting logcat
         if args.clear_logcat:
@@ -191,11 +201,10 @@ class Adb:
             if bug_line is not None:
                 continue
 
-            log_line = ADB_LOG_LINE.match(line)
-            if log_line is None:
+            date, time, level, tag, owner, thread, message = self.log_regex.parse(line)
+            if message is None:
                 continue
 
-            date, time, level, tag, owner, thread, message = log_line.groups()
             tag = tag.strip()
             start = parse_start_proc(line)
             if start:
