@@ -56,16 +56,14 @@ class LogProcessor:
     regex_parser = None
     message_wildcard_list = None
     # target_time = None
-    keywords = None
 
     # tmp
     last_tag = None
     last_msg_key = None
 
-    def __init__(self, message_wildcard_list=None, keywords=None, regex_exp=None):
+    def __init__(self, message_wildcard_list=None, regex_exp=None):
 
         self.message_wildcard_list = message_wildcard_list
-        self.keywords = keywords
 
         if regex_exp is not None:
             self.log_regex = LogRegex(regex_exp)

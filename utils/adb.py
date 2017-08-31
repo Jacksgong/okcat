@@ -20,7 +20,7 @@ from os.path import exists
 from utils.confloader import ConfLoader
 from utils.logprocessor import LogProcessor, indent_wrap
 from utils.terminalcolor import termcolor, RED, RESET, YELLOW, GREEN, colorize, WHITE, allocate_color
-from utils.helper import handle_home_case
+from utils.helper import handle_home_case, LOG_LEVELS, LOG_LEVELS_MAP
 
 __author__ = 'JacksGong'
 __version__ = '1.0.0'
@@ -37,8 +37,6 @@ import re
 import subprocess
 from subprocess import PIPE
 
-LOG_LEVELS = 'VDIWEF'
-LOG_LEVELS_MAP = dict([(LOG_LEVELS[i], i) for i in range(len(LOG_LEVELS))])
 # noinspection Annotator
 PID_LINE = re.compile(r'^\w+\s+(\w+)\s+\w+\s+\w+\s+\w+\s+\w+\s+\w+\s+\w\s([\w|\.|\/]+)$')
 PID_START = re.compile(r'^.*: Start proc ([a-zA-Z0-9._:]+) for ([a-z]+ [^:]+): pid=(\d+) uid=(\d+) gids=(.*)$')
@@ -78,37 +76,9 @@ class Adb:
     def __init__(self):
         pass
 
-    def setup(self):
+    def setup(self, args):
         self.processor = LogProcessor()
 
-        parser = argparse.ArgumentParser(description='Filter logcat by package name')
-        parser.add_argument('package', nargs='*', help='Application package name(s)')
-        parser.add_argument('-w', '--tag-width', metavar='N', dest='tag_width', type=int, default=23,
-                            help='Width of log tag')
-        parser.add_argument('-y', '--yml', dest='yml', help='Using yml file you config on ~/.okcat folder')
-        parser.add_argument('-l', '--min-level', dest='min_level', type=str, choices=LOG_LEVELS + LOG_LEVELS.lower(),
-                            default='V', help='Minimum level to be displayed')
-        parser.add_argument('--color-gc', dest='color_gc', action='store_true', help='Color garbage collection')
-        parser.add_argument('--always-display-tags', dest='always_tags', action='store_true',
-                            help='Always display the tag name')
-        parser.add_argument('--current', dest='current_app', action='store_true',
-                            help='Filter logcat by current running app')
-        parser.add_argument('-s', '--serial', dest='device_serial', help='Device serial number (adb -s option)')
-        parser.add_argument('-d', '--device', dest='use_device', action='store_true',
-                            help='Use first device for log input (adb -d option)')
-        parser.add_argument('-e', '--emulator', dest='use_emulator', action='store_true',
-                            help='Use first emulator for log input (adb -e option)')
-        parser.add_argument('-c', '--clear', dest='clear_logcat', action='store_true',
-                            help='Clear the entire log before running')
-        parser.add_argument('-t', '--tag', dest='tag', action='append', help='Filter output by specified tag(s)')
-        parser.add_argument('-tk', '--tag_keywords', dest='tag_keywords', action='append',
-                            help='Filter output by specified tag keyword(s)')
-        parser.add_argument('-i', '--ignore-tag', dest='ignored_tag', action='append',
-                            help='Filter output by ignoring specified tag(s)')
-        parser.add_argument('-a', '--all', dest='all', action='store_true', default=False,
-                            help='Print all log messages')
-
-        args = parser.parse_args()
         self.min_level = LOG_LEVELS_MAP[args.min_level.upper()]
         self.all = args.all
         self.ignored_tag = args.ignored_tag

@@ -18,7 +18,12 @@ limitations under the License.
 import re
 from os import environ
 
+from os.path import exists
+
 __author__ = 'JacksGong'
+
+LOG_LEVELS = 'VDIWEF'
+LOG_LEVELS_MAP = dict([(LOG_LEVELS[i], i) for i in range(len(LOG_LEVELS))])
 
 NO_HOME_PATH = re.compile(r'~/(.*)')
 HOME_PATH = environ['HOME']
@@ -30,3 +35,12 @@ def handle_home_case(path):
     if path.startswith('~/'):
         path = HOME_PATH + '/' + NO_HOME_PATH.match(path).groups()[0]
     return path
+
+
+def is_path(path):
+    if path.startswith('/') or path.startswith('~/') or path.startswith('./'):
+        return True
+
+    if exists(path):
+        return True
+    return False
