@@ -1,5 +1,5 @@
 /.idea/workspace.xml
 *.pyc
-/build
+*.egg-info
 /dist
-*spec
+/build

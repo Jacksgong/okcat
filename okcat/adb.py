@@ -17,11 +17,12 @@ limitations under the License.
 """
 from os.path import exists
 
-from utils.confloader import ConfLoader
-from utils.helper import handle_home_case, LOG_LEVELS_MAP, get_conf_path
-from utils.logprocessor import LogProcessor, indent_wrap
-from utils.logregex import LogRegex
-from utils.terminalcolor import termcolor, RED, RESET, YELLOW, GREEN, colorize, WHITE, allocate_color
+from helper import handle_home_case, LOG_LEVELS_MAP, get_conf_path
+from logprocessor import LogProcessor, indent_wrap
+from logregex import LogRegex
+from terminalcolor import termcolor, RED, RESET, YELLOW, GREEN, colorize, WHITE, allocate_color
+
+from okcat.confloader import ConfLoader
 
 __author__ = 'JacksGong'
 __version__ = '1.0.0'

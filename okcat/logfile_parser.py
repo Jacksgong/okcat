@@ -17,10 +17,11 @@ limitations under the License.
 """
 from os.path import exists
 
-from utils.confloader import ConfLoader
-from utils.helper import get_conf_path
-from utils.logprocessor import LogProcessor
-from utils.terminalcolor import colorize, allocate_color
+from helper import get_conf_path
+from logprocessor import LogProcessor
+from terminalcolor import colorize, allocate_color
+
+from okcat.confloader import ConfLoader
 
 
 class LogFileParser:

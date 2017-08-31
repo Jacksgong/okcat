@@ -17,10 +17,11 @@ limitations under the License.
 """
 import re
 
-from utils.logregex import LogRegex
-from utils.logseparator import LogSeparator
-from utils.terminalcolor import allocate_color, colorize, TAGTYPES, termcolor, BLACK, RESET
-from utils.trans import Trans
+from logseparator import LogSeparator
+from terminalcolor import allocate_color, colorize, TAGTYPES, termcolor, BLACK, RESET
+from trans import Trans
+
+from okcat.logregex import LogRegex
 
 __author__ = 'JacksGong'
 

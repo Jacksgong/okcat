@@ -1,22 +1,33 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Jacksgong">
     <words>
+      <w>confloader</w>
       <w>dalvik</w>
       <w>dest</w>
       <w>dreamtobe</w>
       <w>ducktype</w>
       <w>dumpsys</w>
+      <w>filedownloader</w>
+      <w>geekassistant</w>
       <w>gids</w>
       <w>jacksgong</w>
       <w>jakewharton</w>
+      <w>licensable</w>
+      <w>licensor</w>
       <w>logcat</w>
+      <w>logprocessor</w>
+      <w>logregex</w>
+      <w>logseparator</w>
+      <w>mylog</w>
       <w>okcat</w>
+      <w>pidcat</w>
       <w>pids</w>
       <w>popen</w>
       <w>proc</w>
       <w>prog</w>
       <w>sharkey</w>
       <w>stdin</w>
+      <w>terminalcolor</w>
       <w>vdiwef</w>
     </words>
   </dictionary>

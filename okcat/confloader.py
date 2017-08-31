@@ -19,7 +19,7 @@ limitations under the License.
 
 import yaml
 
-from utils.helper import handle_home_case
+from okcat.helper import handle_home_case
 
 __author__ = 'JacksGong'
 
