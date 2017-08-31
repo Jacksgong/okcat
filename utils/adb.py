@@ -118,7 +118,7 @@ class Adb:
             self.package_name.append(running_package_name)
 
         if len(self.package_name) == 0:
-            args.all = True
+            self.all = True
 
         # Store the names of packages for which to match all processes.
         self.catchall_package = filter(lambda package: package.find(":") == -1, self.package_name)
