@@ -74,7 +74,8 @@ class LogProcessor:
         self.trans = Trans(trans_msg_map, trans_tag_map, hide_msg_list)
 
     def setup_separator(self, separator_rex_list):
-        self.separator = LogSeparator(separator_rex_list)
+        if separator_rex_list is not None:
+            self.separator = LogSeparator(separator_rex_list)
 
     def setup_highlight(self, highlight_list):
         self.highlight_list = highlight_list
