@@ -19,6 +19,7 @@ You can using this to do many things for logs:
 ## How to Install
 
 ```shell
+# TODO
 ```
 
 ## How to Use
