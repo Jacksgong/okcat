@@ -88,7 +88,3 @@ class ConfLoader:
             print '%s: ' % list_key
             for value in cur_list:
                 print '    - %s' % value
-
-
-loader = ConfLoader()
-loader.load('~/.okcat/sync.yml')
