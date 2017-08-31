@@ -20,7 +20,7 @@ from os.path import exists
 from utils.confloader import ConfLoader
 from utils.logprocessor import LogProcessor, indent_wrap
 from utils.terminalcolor import termcolor, RED, RESET, YELLOW, GREEN, colorize, WHITE, allocate_color
-from utils.helper import handle_home_case, LOG_LEVELS, LOG_LEVELS_MAP
+from utils.helper import handle_home_case, LOG_LEVELS, LOG_LEVELS_MAP, get_conf_path
 
 __author__ = 'JacksGong'
 __version__ = '1.0.0'
@@ -62,7 +62,6 @@ class Adb:
     min_level = None
     package_name = None
     tag = None
-    tag_keywords = None
     header_size = None
     ignored_tag = None
 
@@ -84,10 +83,10 @@ class Adb:
         self.ignored_tag = args.ignored_tag
         self.tag = args.tag
 
-        self.package_name = args.package
-        self.tag_keywords = args.tag_keywords
+        self.package_name = args.package_or_path
+        self.processor.setup_condition(tag_keywords=args.tag_keywords)
         if args.yml is not None:
-            conf_file_path = '~/.okcat/' + args.yml + '.yml'
+            conf_file_path = get_conf_path(args.yml)
             if not exists(handle_home_case(conf_file_path)):
                 exit('you provide conf file path: ' + conf_file_path + ' is not exist!')
 
@@ -96,14 +95,13 @@ class Adb:
 
             yml_package = conf_loader.get_package()
             if yml_package is not None:
-                self.package_name = yml_package
-            yml_tag_keywords = conf_loader.get_tag_keyword_list()
-            if yml_tag_keywords is not None:
-                self.tag_keywords = yml_tag_keywords
+                self.package_name.append(yml_package)
 
+            self.processor.setup_condition(tag_keywords=conf_loader.get_tag_keyword_list())
             self.processor.setup_trans(trans_msg_map=conf_loader.get_trans_msg_map(),
                                        trans_tag_map=conf_loader.get_trans_tag_map(),
                                        hide_msg_list=conf_loader.get_hide_msg_list())
+            self.processor.setup_highlight(highlight_list=conf_loader.get_highlight_list())
             self.processor.setup_separator(separator_rex_list=conf_loader.get_separator_regex_list())
 
         base_adb_command = ['adb']
@@ -240,13 +238,11 @@ class Adb:
                 continue
             if self.tag and not tag_in_tags_regex(tag, self.tag):
                 continue
-            if not tag_in_tag_keywords_regex(tag, self.tag_keywords):
-                continue
 
             msg_key, linebuf, match_precondition = self.processor.process_decode_content(line, time, level, tag, owner,
                                                                                          thread,
                                                                                          message)
-            if linebuf is None:
+            if not match_precondition or linebuf is None:
                 continue
 
             if msg_key is not None:
@@ -314,7 +310,3 @@ def parse_start_proc(_line):
 
 def tag_in_tags_regex(_tag, tags):
     return any(re.match(r'^' + t + r'$', _tag) for t in map(str.strip, tags))
-
-
-def tag_in_tag_keywords_regex(_tag, tag_keywords):
-    return any(re.match(r'.*' + t + r'.*', _tag) for t in map(str.strip, tag_keywords))

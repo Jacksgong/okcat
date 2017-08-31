@@ -15,9 +15,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import argparse
 from os.path import exists
 
+from utils.confloader import ConfLoader
+from utils.helper import get_conf_path
 from utils.logprocessor import LogProcessor
 from utils.terminalcolor import colorize, allocate_color
 
@@ -35,6 +36,17 @@ class LogFileParser:
             exit("log path: %s is not exist!" % self.file_path)
         self.processor = LogProcessor()
 
+        loader = ConfLoader()
+        loader.load(get_conf_path(yml_file_name))
+
+        self.processor.setup_trans(trans_msg_map=loader.get_trans_msg_map(),
+                                   trans_tag_map=loader.get_trans_tag_map(),
+                                   hide_msg_list=loader.get_hide_msg_list())
+        self.processor.setup_separator(separator_rex_list=loader.get_separator_regex_list())
+        self.processor.setup_highlight(highlight_list=loader.get_highlight_list())
+        self.processor.setup_condition(tag_keywords=loader.get_tag_keyword_list())
+        self.processor.setup_regex_parser(regex_exp=loader.get_log_line_regex())
+
     def parse(self):
         log_file = open(self.file_path, 'r')
 
@@ -48,6 +60,7 @@ class LogFileParser:
             if msg_key is not None:
                 result += '\n'
                 result += colorize(msg_key + ": ", fg=allocate_color(msg_key))
+                result += '\n'
 
             result += linebuf
             result += '\n'

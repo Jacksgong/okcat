@@ -55,6 +55,12 @@ class ConfLoader:
     def get_hide_msg_list(self):
         return self.get_value('hide-msg-list')
 
+    def get_highlight_list(self):
+        return self.get_value('highlight-list')
+
+    def get_log_line_regex(self):
+        return self.get_value('log-line-regex')
+
     def get_separator_regex_list(self):
         return self.get_value('separator-regex-list')
 
@@ -65,10 +71,12 @@ class ConfLoader:
 
     def dump(self):
         print 'package: %s' % self.get_package()
+        print 'log-line-regex: %s' % self.get_log_line_regex()
         self.dump_list('tag-keyword-list')
         self.dump_unicode_map('trans-msg-map')
         self.dump_unicode_map('trans-tag-map')
         self.dump_list('hide-msg-list')
+        self.dump_list('highlight-list')
         self.dump_list('separator-regex-list')
 
     def dump_unicode_map(self, map_key):

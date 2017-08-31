@@ -44,3 +44,13 @@ def is_path(path):
     if exists(path):
         return True
     return False
+
+
+def get_conf_path(conf_name):
+    if not conf_name.endswith('.yml'):
+        conf_name = conf_name + '.yml'
+
+    if exists(conf_name):
+        return conf_name
+
+    return '~/.okcat/' + conf_name
