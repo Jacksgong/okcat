@@ -2,12 +2,12 @@
 An powerful log processor.
 
 ![](https://img.shields.io/badge/LogProcessor-OkCat-blue.svg)
+[![](https://img.shields.io/badge/pip-okcat-green.svg)](https://pypi.python.org/pypi/OkCat)
 
 The adb logcat handler is just update to JakeWharton's nice pidcat and I adapt it for more features.
-
 You can using this log processor with define you own `log-line-regex` and it can work for any log: iOS, Android, Backend, etc.  
 
-You can using powerful tool to do many things for logs:
+##### Features
 
 - highlight some keywords
 ![](https://github.com/Jacksgong/okcat/raw/master/arts/highlight-demo.png)
@@ -23,10 +23,8 @@ You can using powerful tool to do many things for logs:
 ## How to Install
 
 ```shell
-# TODO
+pip install okcat
 ```
-
-Now you can clone and execute `okcat.py` through `python okcat.py` temporary.
 
 ## How to Use
 
@@ -77,13 +75,13 @@ highlight-list:
 You can just parse logcat from running adb:
 
 ```
-./okcat -y=your_conf_name
+okcat -y=your_conf_name
 ```
 
 You also can parse your log file through:
 
 ```
-./okcat -y=your_conf_name your_log_path
+okcat -y=your_conf_name your_log_path
 ```
 
 ## LICENSE
