@@ -1,8 +1,7 @@
 # OkCat
-
 An powerful log processor.
 
----
+![](https://img.shields.io/badge/LogProcessor-OkCat-blue.svg)
 
 The adb logcat handler is just update to JakeWharton's nice pidcat and I adapt it for more features.
 
@@ -26,6 +25,8 @@ You can using powerful tool to do many things for logs:
 ```shell
 # TODO
 ```
+
+Now you can clone and execute `okcat.py` through `python okcat.py` temporary.
 
 ## How to Use
 
@@ -76,13 +77,13 @@ highlight-list:
 You can just parse logcat from running adb:
 
 ```
-okcat -y=your_conf_name
+./okcat -y=your_conf_name
 ```
 
 You also can parse your log file through:
 
 ```
-okcat -y=your_conf_name your_log_path
+./okcat -y=your_conf_name your_log_path
 ```
 
 ## LICENSE
