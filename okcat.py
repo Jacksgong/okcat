@@ -15,11 +15,24 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+from utils.adb import Adb
 
 __author__ = 'JacksGong'
 __version__ = '1.0.0'
 __description__ = 'This python script used for combine several Android projects to one project.'
 
 print("-------------------------------------------------------")
-print("OkCat v" + __version__ + " Powered by")
+print("OkCat v" + __version__)
 print("-------------------------------------------------------")
+
+ID_DEBUG = True
+file_path = None
+
+if file_path is None:
+    adb = Adb()
+    adb.setup()
+    while True:
+        try:
+            adb.loop()
+        except KeyboardInterrupt:
+            break
