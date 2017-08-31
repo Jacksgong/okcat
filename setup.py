@@ -18,21 +18,19 @@ limitations under the License.
 from os import path
 from setuptools import setup, find_packages
 
-here = path.abspath(path.dirname(__file__))
-
 # Get the long description from the README file
 # noinspection PyArgumentList
-with open(path.join(here, 'README.md').encode('utf-8')) as f:
+with open('README.md') as f:
     long_description = f.read()
 
 setup(
     name="OkCat",
-    version="1.0.0",
+    version="1.0.2",
     packages=find_packages(exclude=['demo-conf', 'arts']),
 
     # Project uses reStructuredText, so ensure that the docutils get
     # installed or upgraded on the target machine
-    install_requires=['PyYAML'],
+    install_requires=['PyYAML>=3.12'],
 
     # metadata for upload to PyPI
     author="Jacksgong",

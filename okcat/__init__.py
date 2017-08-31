@@ -23,7 +23,7 @@ from logfile_parser import LogFileParser
 from okcat.adb import Adb
 
 __author__ = 'JacksGong'
-__version__ = '1.0.0'
+__version__ = '1.0.2'
 __description__ = 'This python script used for combine several Android projects to one project.'
 
 

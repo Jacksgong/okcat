@@ -25,7 +25,6 @@ from terminalcolor import termcolor, RED, RESET, YELLOW, GREEN, colorize, WHITE,
 from okcat.confloader import ConfLoader
 
 __author__ = 'JacksGong'
-__version__ = '1.0.0'
 
 # Script to highlight adb logcat output for console
 # Originally written by Jeff Sharkey, http://jsharkey.org/
