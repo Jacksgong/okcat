@@ -18,9 +18,9 @@ limitations under the License.
 from os.path import exists
 
 from utils.confloader import ConfLoader
+from utils.helper import handle_home_case, LOG_LEVELS_MAP, get_conf_path
 from utils.logprocessor import LogProcessor, indent_wrap
 from utils.terminalcolor import termcolor, RED, RESET, YELLOW, GREEN, colorize, WHITE, allocate_color
-from utils.helper import handle_home_case, LOG_LEVELS, LOG_LEVELS_MAP, get_conf_path
 
 __author__ = 'JacksGong'
 __version__ = '1.0.0'
@@ -31,7 +31,6 @@ __version__ = '1.0.0'
 # Package filtering and output improvements by Jake Wharton, http://jakewharton.com
 # Package adapt for okcat by Jacks Gong, https://jacksgong.com
 
-import argparse
 import sys
 import re
 import subprocess

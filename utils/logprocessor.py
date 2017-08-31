@@ -98,6 +98,7 @@ class LogProcessor:
 
         return self.process_decode_content(origin_line, time, level, tag, process, thread, message)
 
+    # noinspection PyUnusedLocal
     def process_decode_content(self, line, time, level, tag, process, thread, message):
 
         match_condition = True

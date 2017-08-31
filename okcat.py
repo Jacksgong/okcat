@@ -16,7 +16,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import argparse
-from os.path import exists
 
 from utils.adb import Adb
 from utils.helper import LOG_LEVELS, is_path
