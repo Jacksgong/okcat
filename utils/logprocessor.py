@@ -150,15 +150,16 @@ class LogProcessor:
         linebuf += ' '
 
         # message
+        # -separator
+        if self.separator is not None:
+            msgkey = self.separator.process(message)
+            
         # -trans
         if self.trans is not None:
             message = self.trans.trans_msg(message)
             message = self.trans.hide_msg(message)
             message = self.trans.trans_tag(tag, message)
 
-        # -separator
-        if self.separator is not None:
-            msgkey = self.separator.process(message)
 
         if self.highlight_list is not None:
             for highlight in self.highlight_list:
