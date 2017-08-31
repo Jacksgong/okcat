@@ -29,9 +29,6 @@ print("-------------------------------------------------------")
 print("OkCat v" + __version__)
 print("-------------------------------------------------------")
 
-ID_DEBUG = True
-file_path = None
-
 parser = argparse.ArgumentParser(description='Filter logcat by package name')
 parser.add_argument('package_or_path', nargs='*',
                     help='This can be Application package name(s) or log file path(if the file from path is exist)')
@@ -67,6 +64,7 @@ parser.add_argument('-a', '--all', dest='all', action='store_true', default=Fals
 
 args = parser.parse_args()
 
+file_path = None
 candidate_path = args.package_or_path
 if candidate_path is not None and len(candidate_path) > 0 and is_path(candidate_path[0]):
     file_path = candidate_path[0]

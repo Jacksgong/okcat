@@ -34,8 +34,8 @@ class ConfLoader:
         with open(handle_home_case(yml_file_path), 'r') as stream:
             try:
                 self.yml_conf = yaml.load(stream)
-                print(u'find yml configuration on %s:' % yml_file_path)
-                self.dump()
+                # print(u'find yml configuration on %s:' % yml_file_path)
+                # self.dump()
 
             except yaml.YAMLError as exc:
                 print(exc)
