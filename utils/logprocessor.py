@@ -17,7 +17,7 @@ limitations under the License.
 """
 
 from utils.logregex import LogRegex
-from utils.logbarrier import LogBarrier
+from utils.logseparator import LogSeparator
 from utils.terminalcolor import allocate_color, colorize, TAGTYPES
 from utils.trans import Trans
 
@@ -51,10 +51,10 @@ class LogProcessor:
     errorLogs = ""
 
     trans = None
+    separator = None
     log_regex = None
     regex_parser = None
     message_wildcard_list = None
-    split_log = None
     # target_time = None
     keywords = None
 
@@ -62,10 +62,9 @@ class LogProcessor:
     last_tag = None
     last_msg_key = None
 
-    def __init__(self, message_wildcard_list=None, split_exp=None, keywords=None, regex_exp=None):
+    def __init__(self, message_wildcard_list=None, keywords=None, regex_exp=None):
 
         self.message_wildcard_list = message_wildcard_list
-        self.split_log = LogBarrier(split_exp)
         self.keywords = keywords
 
         if regex_exp is not None:
@@ -73,6 +72,9 @@ class LogProcessor:
 
     def setup_trans(self, trans_msg_map, trans_tag_map, hide_msg_list):
         self.trans = Trans(trans_msg_map, trans_tag_map, hide_msg_list)
+
+    def setup_separator(self, separator_rex_list):
+        self.separator = LogSeparator(separator_rex_list)
 
     def process(self, origin_line):
         origin_line = origin_line.decode('utf-8', 'replace').strip()
@@ -137,14 +139,15 @@ class LogProcessor:
             linebuf += ' '
 
             # message
+            # -trans
             if self.trans is not None:
                 message = self.trans.trans_msg(message)
                 message = self.trans.hide_msg(message)
                 message = self.trans.trans_tag(tag, message)
 
-            # split
-            if self.split_log is not None:
-                msgkey = self.split_log.process(message)
+            # -separator
+            if self.separator is not None:
+                msgkey = self.separator.process(message)
 
             linebuf += message
 

@@ -55,6 +55,9 @@ class ConfLoader:
     def get_hide_msg_list(self):
         return self.get_value('hide-msg-list')
 
+    def get_separator_regex_list(self):
+        return self.get_value('separator-regex-list')
+
     def get_value(self, keyword):
         if keyword not in self.yml_conf:
             return None
@@ -66,6 +69,7 @@ class ConfLoader:
         self.dump_unicode_map('trans-msg-map')
         self.dump_unicode_map('trans-tag-map')
         self.dump_list('hide-msg-list')
+        self.dump_list('separator-regex-list')
 
     def dump_unicode_map(self, map_key):
         unicode_map = self.get_value(map_key)

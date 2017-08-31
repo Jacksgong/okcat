@@ -134,6 +134,7 @@ class Adb:
             self.processor.setup_trans(trans_msg_map=conf_loader.get_trans_msg_map(),
                                        trans_tag_map=conf_loader.get_trans_tag_map(),
                                        hide_msg_list=conf_loader.get_hide_msg_list())
+            self.processor.setup_separator(separator_rex_list=conf_loader.get_separator_regex_list())
 
         base_adb_command = ['adb']
         if args.device_serial:
@@ -211,7 +212,6 @@ class Adb:
     def loop(self):
         app_pid = None
 
-        last_msgkey = None
         while self.adb.poll() is None:
             # try:
             line = self.adb.stdout.readline().decode('utf-8', 'replace').strip()
@@ -276,13 +276,13 @@ class Adb:
             msg_key, linebuf, match_precondition = self.processor.process_decode_content(line, time, level, tag, owner,
                                                                                          thread,
                                                                                          message)
-            if linebuf is None or msg_key is None:
+            if linebuf is None:
                 continue
 
-            if last_msgkey != msg_key:
+            if msg_key is not None:
                 print ''
                 print colorize(msg_key + ": ", fg=allocate_color(msg_key))
-                last_msgkey = msg_key
+
             print linebuf
 
     def match_packages(self, token):
