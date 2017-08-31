@@ -16,7 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import re
-from os import environ
+from os import environ, getcwd
 
 from os.path import exists
 
@@ -50,7 +50,11 @@ def get_conf_path(conf_name):
     if not conf_name.endswith('.yml'):
         conf_name = conf_name + '.yml'
 
-    if exists(conf_name):
-        return conf_name
+    cur_path_yml = '%s/%s' % (getcwd(), conf_name)
+    if exists(cur_path_yml):
+        result = cur_path_yml
+    else:
+        result = '~/.okcat/' + conf_name
 
-    return '~/.okcat/' + conf_name
+    print 'using config on %s' % result
+    return result
