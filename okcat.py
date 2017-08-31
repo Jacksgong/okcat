@@ -80,4 +80,4 @@ if file_path is None:
 else:
     parser = LogFileParser(file_path)
     parser.setup(args.yml)
-    print parser.parse()
+    print u''.join(parser.parse()).encode('utf-8').strip()

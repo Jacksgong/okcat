@@ -248,7 +248,7 @@ class Adb:
                 print ''
                 print colorize(msg_key + ": ", fg=allocate_color(msg_key))
 
-            print linebuf
+            print u''.join(linebuf).encode('utf-8').strip()
 
     def match_packages(self, token):
         if len(self.package_name) == 0:
