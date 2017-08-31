@@ -5,16 +5,15 @@ The adb logcat handler is just update to JakeWharton's nice pidcat and we adapt 
 You can using this to do many things for logs:
 
 - highlight some keywords
-![](highit-demo.png)
+![](https://github.com/Jacksgong/okcat/raw/master/arts/highlight-demo.png)
 - trans msgs to some words
-![](trans-msg-demo.png)
+![](https://github.com/Jacksgong/okcat/raw/master/arts/trans-msg-demo.png)
 - trans tags to some words
-![](trans-tag-demo.png)
+![](https://github.com/Jacksgong/okcat/raw/master/arts/trans-tag-demo.png)
 - hide msg on logs
-![](hide-msg-demo.png)
+![](https://github.com/Jacksgong/okcat/raw/master/arts/hide-msg-demo.png)
 - separate logs
-![](separate-demo.png)
-
+![](https://github.com/Jacksgong/okcat/raw/master/arts/separate-demo.png)
 
 ## How to Install
 
