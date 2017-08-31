@@ -1,8 +1,14 @@
 # OkCat
 
-The adb logcat handler is just update to JakeWharton's nice pidcat and we adapt it for more features.
+An powerful log processor.
 
-You can using this to do many things for logs:
+---
+
+The adb logcat handler is just update to JakeWharton's nice pidcat and I adapt it for more features.
+
+You can using this log processor with define you own `log-line-regex` and it can work for any log: iOS, Android, Backend, etc.  
+
+You can using powerful tool to do many things for logs:
 
 - highlight some keywords
 ![](https://github.com/Jacksgong/okcat/raw/master/arts/highlight-demo.png)
@@ -22,6 +28,20 @@ You can using this to do many things for logs:
 ```
 
 ## How to Use
+
+---
+
+#### Simplest test
+
+1. Create folder: `~/.okcat/`
+2. Download: [filedownloader.yml](https://github.com/Jacksgong/okcat/raw/master/demo-conf/filedownloader.yml) and move to the `~/.okcat/` folder
+3. Running: [Filedownloader-Demo](https://github.com/lingochamp/FileDownloader) on your Android phone 
+4. Execute: `./okcat -y=filedownloader`
+5. Checkout result on terminal
+
+![](https://github.com/Jacksgong/okcat/raw/master/arts/demo.png)
+
+---
 
 #### 1. Define your config file( Option but recommended ):
 
@@ -64,7 +84,6 @@ You also can parse your log file through:
 ```
 okcat -y=your_conf_name your_log_path
 ```
-
 
 ## LICENSE
 

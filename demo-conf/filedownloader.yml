@@ -1,0 +1,24 @@
+package: com.liulishuo.filedownloader.demo
+separator-regex-list: 
+        - 'call start Url\[([^\]]*)\]'
+
+trans-msg-map:
+        'filedownloader:lifecycle:over': 'Task OVER'
+        'fetch data with': 'Start Fetch'
+
+trans-tag-map:
+        'FileDownloadApplication': '[Thread Change]'
+        'DownloadTaskHunter': '[Status Change]'
+        'ConnectTask': '[Request]'
+
+hide-msg-list:
+        # process
+        - 'notify progress'
+        - '~~~callback'
+
+highlight-list:
+        - 'Path['
+        - 'Url['
+        - 'Tag['
+        - 'range['
+
