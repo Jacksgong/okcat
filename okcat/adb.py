@@ -47,7 +47,7 @@ PID_KILL = re.compile(r'^Killing (\d+):([a-zA-Z0-9._:]+)/[^:]+: (.*)$')
 PID_LEAVE = re.compile(r'^No longer want ([a-zA-Z0-9._:]+) \(pid (\d+)\): .*$')
 PID_DEATH = re.compile(r'^Process ([a-zA-Z0-9._:]+) \(pid (\d+)\) has died.?$')
 
-ADB_LOG_REGEX_EXP = 'data,time,process,thread,level,tag,message="(.\S*) (.\S*) (\d*) (\d*) ([A-Z]) ([^:]*): (.*?)$"'
+ADB_LOG_REGEX_EXP = 'data,time,process,thread,level,tag,message="(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
 
 BUG_LINE = re.compile(r'.*nativeGetEnabledTags.*')
 BACKTRACE_LINE = re.compile(r'^#(.*?)pc\s(.*?)$')
@@ -203,6 +203,7 @@ class Adb:
 
             date, time, level, tag, owner, thread, message = self.log_regex.parse(line)
             if message is None:
+                # print 'message is none with %s' % line
                 continue
 
             tag = tag.strip()
@@ -238,6 +239,7 @@ class Adb:
                     message = message.lstrip()
                     owner = app_pid
 
+            # print '%s %s %s' % (owner, self.pids, tag)
             if not self.all and owner not in self.pids:
                 continue
             if level in LOG_LEVELS_MAP and LOG_LEVELS_MAP[level] < self.min_level:
