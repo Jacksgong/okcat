@@ -27,8 +27,13 @@ An powerful log processor.
 ## How to Install
 
 ```shell
-pip install okcat
+sudo pip install okcat
 ```
+
+If you has not installed `pip` yet, you need to install it first:
+
+1. `brew install python`
+2. `sudo easy_install pip`
 
 ## How to Use
 

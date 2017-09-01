@@ -27,8 +27,13 @@
 ## 如何安装
 
 ```shell
-pip install okcat
+sudo pip install okcat
 ```
+
+如果你还没有安装`pip`，你需要先安装`pip`:
+
+1. `brew install python`
+2. `sudo easy_install pip`
 
 ## 如何使用
 
