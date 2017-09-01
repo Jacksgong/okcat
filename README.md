@@ -44,7 +44,7 @@ pip install okcat
 
 #### 1. Define your config file( Option but recommended ):
 
-You can create your own yaml file as config file one `~/.okcat/` or the current folder you will execute `okcat` command, and the filename is free to create, when you execute the okcat, we will ask you the configure file name you want to apply.
+You can create your own yaml file as config file on `~/.okcat/` folder or the current folder you will execute `okcat` command, and the filename is free to choose, when you execute the okcat, we will ask you the configure file name you want to apply.
 
 ```yml
 package: cn.dreamtobe.geekassistant
@@ -75,13 +75,13 @@ highlight-list:
 You can just parse logcat from running adb:
 
 ```
-okcat -y=your_conf_name
+okcat -y=your-conf-name
 ```
 
 You also can parse your log file through:
 
 ```
-okcat -y=your_conf_name your_log_path
+okcat -y=your-conf-name your-log-path
 ```
 
 ## LICENSE
