@@ -7,3 +7,4 @@
 - Enhance: support `--hide-same-tags` param
 - Fix: output all log when `log-line-regex` can't parse
 - Fix: handle case of only message is valid
+- Fix: fix print non-match content when the log can't match regex
