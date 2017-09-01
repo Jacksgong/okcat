@@ -35,6 +35,12 @@ sudo pip install okcat
 1. `brew install python`
 2. `sudo easy_install pip`
 
+如果你想要升级:
+
+```
+sudo pip install okcat --upgrade
+```
+
 ## 如何使用
 
 ---

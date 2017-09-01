@@ -35,6 +35,12 @@ If you has not installed `pip` yet, you need to install it first:
 1. `brew install python`
 2. `sudo easy_install pip`
 
+If you want to upgrade:
+
+```shell
+sudo pip install okcat --upgrade
+```
+
 ## How to Use
 
 ---
