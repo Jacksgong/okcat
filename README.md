@@ -4,6 +4,8 @@ An powerful log processor.
 ![](https://img.shields.io/badge/LogProcessor-OkCat-blue.svg)
 [![](https://img.shields.io/badge/pip-okcat-green.svg)](https://pypi.python.org/pypi/OkCat)
 
+[中文文档](https://github.com/Jacksgong/okcat/blob/master/README-zh.md)
+
 The adb logcat handler is just update to JakeWharton's nice pidcat and I adapt it for more features.
 You can using this log processor with define you own `log-line-regex` and it can work for any log: iOS, Android, Backend, etc.  
 
@@ -57,11 +59,11 @@ tag-keyword-list:
 	- mylog
 
 trans-msg-map:
-	'connected-': "ConnectionMsg已经连接"
-	'disconnected-': "ConnectionMsg已断开"
+	'connected-': "Spdy Connected"
+	'disconnected-': "Spdy Disconnected"
 
 trans-tag-map:
-	'MyActivityLifecycle': '[事件]'
+	'MyActivityLifecycle': '[Event]'
 
 hide-msg-list:
 	- 'heart-beat'
