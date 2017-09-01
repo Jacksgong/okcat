@@ -45,7 +45,7 @@ pip install okcat
 
 ---
 
-#### 1. Define your config file( Option but recommended ):
+#### 1. Define your config file(`.yaml`)
 
 You can create your own yaml file as config file on `~/.okcat/` folder or the current folder you will execute `okcat` command, and the filename is free to choose, when you execute the okcat, we will ask you the configure file name you want to apply.
 
@@ -73,7 +73,7 @@ highlight-list:
   - 'isSuccess='
 ```
 
-## 2. Execute
+#### 2. Execute
 
 You can just parse logcat from running adb:
 
