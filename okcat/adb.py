@@ -78,7 +78,7 @@ class Adb:
         pass
 
     def setup(self, args):
-        self.processor = LogProcessor()
+        self.processor = LogProcessor(args.hide_same_tags)
 
         self.min_level = LOG_LEVELS_MAP[args.min_level.upper()]
         self.all = args.all
