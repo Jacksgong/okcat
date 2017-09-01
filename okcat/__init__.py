@@ -43,6 +43,8 @@ def main():
     parser.add_argument('package_or_path', nargs='*',
                         help='This can be Application package name(s) or log file path(if the file from path is exist)')
     parser.add_argument('-y', '--yml_file_name', dest='yml', help='Using yml file you config on ~/.okcat folder')
+    parser.add_argument('--hide-same-tags', dest='hide_same_tags', action='store_true',
+                        help='Do not display the same tag name')
 
     # following args are just for parser
     # parser.add_argument('-k', '--keyword', dest='keyword', action='append', help='You can filter you care about log by this keyword(s)')
@@ -53,8 +55,6 @@ def main():
     parser.add_argument('-l', '--min-level', dest='min_level', type=str, choices=LOG_LEVELS + LOG_LEVELS.lower(),
                         default='V', help='Minimum level to be displayed')
     parser.add_argument('--color-gc', dest='color_gc', action='store_true', help='Color garbage collection')
-    parser.add_argument('--always-display-tags', dest='always_tags', action='store_true',
-                        help='Always display the tag name')
     parser.add_argument('--current', dest='current_app', action='store_true',
                         help='Filter logcat by current running app')
     parser.add_argument('-s', '--serial', dest='device_serial', help='Device serial number (adb -s option)')
@@ -93,6 +93,6 @@ def main():
                 break
 
     else:
-        parser = LogFileParser(file_path)
+        parser = LogFileParser(file_path, args.hide_same_tags)
         parser.setup(args.yml)
         print u''.join(parser.parse()).encode('utf-8').strip()

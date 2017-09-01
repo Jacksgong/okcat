@@ -43,7 +43,7 @@ class Trans:
         return msg
 
     def trans_tag(self, tag, msg):
-        if self.trans_tag_map is None:
+        if self.trans_tag_map is None or tag is None:
             return msg
 
         for key in self.trans_tag_map:

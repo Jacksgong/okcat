@@ -81,3 +81,37 @@ class LogRegex:
                 message = value
 
         return data, time, level, tag, process, thread, message
+
+    contain_data = None
+    contain_time = None
+    contain_thread = None
+    contain_tag = None
+    contain_level = None
+
+    def is_contain_data(self):
+        if self.contain_data is None:
+            self.contain_data = self.is_contain_key("data")
+        return self.contain_data
+
+    def is_contain_time(self):
+        if self.contain_time is None:
+            self.contain_time = self.is_contain_key("time")
+        return self.contain_time
+
+    def is_contain_thread(self):
+        if self.contain_thread is None:
+            self.contain_thread = self.is_contain_key("thread")
+        return self.contain_thread
+
+    def is_contain_tag(self):
+        if self.contain_tag is None:
+            self.contain_tag = self.is_contain_key("tag")
+        return self.contain_tag
+
+    def is_contain_level(self):
+        if self.contain_level is None:
+            self.contain_level = self.is_contain_key("level")
+        return self.contain_level
+
+    def is_contain_key(self, key):
+        return key in self.key_order
