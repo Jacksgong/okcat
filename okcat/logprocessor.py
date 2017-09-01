@@ -50,12 +50,6 @@ def keywords_regex(content, keywords):
 
 
 class LogProcessor:
-    # output
-    warningLine = 0
-    warningLogs = ""
-    errorLine = 0
-    errorLogs = ""
-
     trans = None
     tag_keywords = None
     line_keywords = None
@@ -144,23 +138,24 @@ class LogProcessor:
         linebuf += ' '
 
         # level
-        if level in TAGTYPES:
-            linebuf += TAGTYPES[level]
-        else:
-            linebuf += ' ' + level + ' '
-        linebuf += ' '
+        if level is not None:
+
+            if level in TAGTYPES:
+                linebuf += TAGTYPES[level]
+            else:
+                linebuf += ' ' + level + ' '
+            linebuf += ' '
 
         # message
         # -separator
         if self.separator is not None:
             msgkey = self.separator.process(message)
-            
+
         # -trans
         if self.trans is not None:
             message = self.trans.trans_msg(message)
             message = self.trans.hide_msg(message)
             message = self.trans.trans_tag(tag, message)
-
 
         if self.highlight_list is not None:
             for highlight in self.highlight_list:
@@ -169,12 +164,5 @@ class LogProcessor:
                                               termcolor(fg=BLACK, bg=allocate_color(highlight)) + highlight + RESET)
 
         linebuf += message
-
-        if 'W' in level:
-            self.warningLine += 1
-            self.warningLogs += linebuf + '\n'
-        elif 'E' in level:
-            self.errorLine += 1
-            self.errorLogs += linebuf + '\n'
 
         return msgkey, linebuf, match_condition
