@@ -49,6 +49,8 @@ pip install okcat
 
 You can create your own yaml file as config file on `~/.okcat/` folder or the current folder you will execute `okcat` command, and the filename is free to choose, when you execute the okcat, we will ask you the configure file name you want to apply.
 
+Of course, you don't have to provide each config, if you think which one is needed, just config that one.
+
 ```yml
 package: cn.dreamtobe.geekassistant
 log-line-regex: 'data,time,level,tag,process,thread,message = "(.\S*) (.\S*) ([A-Z])/([^:[]*):\[(\d*):([^] ]*)\] (.*?)$"'
