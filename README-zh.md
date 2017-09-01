@@ -52,7 +52,7 @@ sudo pip install okcat --upgrade
 #### 最简单的测试
 
 1. 下载[filedownloader.yml](https://github.com/Jacksgong/okcat/raw/master/demo-conf/filedownloader.yml)在当前目录，或者移动到`~/.okcat/`目录中
-3. 运行这个[Filedownloader-Demo](https://github.com/lingochamp/FileDownloader)项目中的demo项目，并运行到你的Android手机上，然后将手机连接电脑 
+3. 运行这个[Filedownloader-Demo](https://github.com/lingochamp/FileDownloader)项目中的demo项目，并运行到你的Android手机上，然后将手机连接电脑
 4. 执行: `okcat -y=filedownloader`
 5. 此时日志就会根据[filedownloader.yml](https://github.com/Jacksgong/okcat/raw/master/demo-conf/filedownloader.yml)的配置输出了
 
@@ -70,55 +70,61 @@ sudo pip install okcat --upgrade
 ```yml
 # 定义连线手机进行ADB处理时，需要过滤的包名；
 # 如果不使用Android的ADB功能，便不需要配置
-package: cn.dreamtobe.geekassistant
+package: com.liulishuo.filedownloader.demo
 
 # 配置对于一行日志的正则表达式，目前支持正则出data、time、level、tag、process、thread、message
-# 不过不一定要全部提供，至少需要提供一个message，如log-line-regex: 'message="(.\S*)"'
-log-line-regex: 'data,time,level,tag,process,thread,message = "(.\S*) (.\S*) ([A-Z])/([^:[]*):\[(\d*):([^] ]*)\] (.*?)$"'
+# 不过不一定要全部提供，至少需要提供一个message
+# 如log-line-regex: 'message="(.\S*)"'
+log-line-regex: 'data,time,level,tag,process,thread,message = "(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
 
 # 在Android的ADB的情况下，我们是使用adb logcat -v brief -v threadtime
 # 一般情况下不需要adb-log-line-regex配置，我们已经有很完善的这块的正则，但是如果对这个需要特别定制便可以使用以下定制
-# adb-log-line-regex: 'data,time,process,thread,level,tag,message="(.\S*) (.\S*) (\d*) (\d*) ([A-Z]) ([^:]*): (.*?)$"'
+# adb-log-line-regex: 'data,time,process,thread,level,tag,message="(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
 
 # 分割正则列表
 # 可以提供多个正则表达式，对日志进行分割
 separator-regex-list:
-  # 对满足以下正则的那行日志开始进行分割，并且以(\d*)的内容作为分割的标题
-  - 'MAIN,\d*,(\d*)'
+  # 对满足以下正则的那行日志开始进行分割，并且以([^\]]*)的内容作为分割的标题
+  - 'call start Url\[([^\]]*)\]'
 
 # 标签关键字
 # 如果不提供tag-keyword-list将会显示所有日志
 # 如果如下提供了tag-keyword-list将会过滤日志，只显示tag中包含了这里列出关键字的日志
 tag-keyword-list:
-  - mytag
+  - 'FileDownloader'
 
 # 内容转译表
 # 如果日志message中由表中key开头，将会使用彩色的文字在该message开头加上表中的value
 trans-msg-map:
-  # 如这个例子: 
-  # 原message: 'connected-xxx xxx'
-  # 转译后: '| SPDY已经连接 | connected-xxx xxx' 其中的'SPDY已经连接'会使用彩色的文字显示
-  'connected-': 'SPDY已经连接'
-  'disconnected-': 'SPDY已断开'
+  # 如这个例子:
+  # 原message: 'filedownloader:lifecycle:over xxx'
+  # 转译后: '| 任务结束 | filedownloader:lifecycle:over xxx' 其中的'任务结束'会使用彩色的文字显示
+  'filedownloader:lifecycle:over': '任务结束'
+  'fetch data with': '开始拉取'
 
 # 标签转译表
 # 如果日志tag中包含表中key开头，将会使用彩色背景的文字在该message开头加上表中的value
 trans-tag-map:
   # 如这个例子:
-  # 原输出: 'AMyActivityLifecycleEvent	MainActivity onResumed'
-  # 转译后: 'AMyActivityLifecycleEvent	[事件] MainActivity onResumed' 其中'[事件]'会使用彩色背景
-  'MyActivityLifecycle': '[事件]'
+  # 原输出: 'FileDownloader.DownloadTaskHunter  xxx'
+  # 转译后: 'FileDownloader.DownloadTaskHunter [状态切换] xxx' 其中'[状态切换]'会使用彩色背景
+  'DownloadTaskHunter': '[状态切换]'
+  'ConnectTask': '[请求]'
 
 # 隐藏消息列表
 # 对以以下内容开头并且message长度小于100的内功进行灰色显示处理，在视觉上进行隐藏
 hide-msg-list:
   # 这里案例因为心跳日志是非常频繁的日志，通常没有什么问题，因此将其着灰色
-  - 'heart-beat'
+  - 'notify progress'
+  - '~~~callback'
 
 # 高亮列表
 # 对message中的以下内容，背景进行彩色处理使其高亮
 highlight-list:
-  - 'isSuccess='
+  - 'Path['
+  - 'Url['
+  - 'Tag['
+  - 'range['
 ```
 
 #### 2. 执行
@@ -154,4 +160,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
