@@ -63,6 +63,7 @@ class LogProcessor:
     # tmp
     last_msg_key = None
     last_tag = None
+    pre_line_match = True
 
     def __init__(self, hide_same_tags):
         self.hide_same_tags = hide_same_tags
@@ -104,13 +105,25 @@ class LogProcessor:
 
         match_condition = True
 
+        # filter
         if self.tag_keywords is not None and tag is not None:
             if not keywords_regex(tag, self.tag_keywords):
                 match_condition = False
+                self.pre_line_match = False
+            else:
+                self.pre_line_match = True
+
+
 
         if self.line_keywords is not None:
             if not keywords_regex(line, self.line_keywords):
                 match_condition = False
+                self.pre_line_match = False
+            else:
+                self.pre_line_match = True
+
+        if match_condition and tag is None and not self.pre_line_match:
+            match_condition = False
 
         # if 'special world' in line:
         #     match_precondition = True
