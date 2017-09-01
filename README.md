@@ -92,7 +92,7 @@ separator-regex-list:
 # this list keyword is using for filter out which log need to be output
 # all provided keyword will be using for compare with each line tag, if a line with tag not contain any keyword on 'tag-keyword-list' it will be ignore to output
 tag-keyword-list:
-  - mylog
+  - mytag
 
 # translate message map
 # if a message on a line start with provide keyword on the 'trans-msg-map' we will add the value of the keyword on the start of the message, and the word of value will be corlored to highlight it

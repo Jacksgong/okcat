@@ -90,7 +90,7 @@ separator-regex-list:
 # 如果不提供tag-keyword-list将会显示所有日志
 # 如果如下提供了tag-keyword-list将会过滤日志，只显示tag中包含了这里列出关键字的日志
 tag-keyword-list:
-  - mylog
+  - mytag
 
 # 内容转译表
 # 如果日志message中由表中key开头，将会使用彩色的文字在该message开头加上表中的value
