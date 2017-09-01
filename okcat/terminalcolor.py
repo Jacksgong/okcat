@@ -58,7 +58,7 @@ def print_key(msg):
     print(BashColors.GREEN + msg + BashColors.END)
 
 
-def print_and_key(msg):
+def print_blue(msg):
     print(BashColors.BLUE + msg + BashColors.END)
 
 

@@ -16,11 +16,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import argparse
+from sys import argv
 
 from helper import LOG_LEVELS, is_path
 from logfile_parser import LogFileParser
 
 from okcat.adb import Adb
+from okcat.terminalcolor import print_tips, print_blue
 
 __author__ = 'JacksGong'
 __version__ = '1.0.2'
@@ -29,7 +31,12 @@ __description__ = 'This python script used for combine several Android projects 
 
 def main():
     print("-------------------------------------------------------")
-    print("OkCat v" + __version__)
+    print("                  OkCat v" + __version__)
+    print ""
+    print "Thanks for using okcat! Now, the doc is available on: "
+    print_blue("        https://github.com/Jacksgong/okcat")
+    print ""
+    print "                   Have Fun!"
     print("-------------------------------------------------------")
 
     parser = argparse.ArgumentParser(description='Filter logcat by package name')
@@ -64,6 +71,10 @@ def main():
                         help='Filter output by ignoring specified tag(s)')
     parser.add_argument('-a', '--all', dest='all', action='store_true', default=False,
                         help='Print all log messages')
+
+    # help
+    if len(argv) == 2 and argv[1] == 'help':
+        exit()
 
     args = parser.parse_args()
 
