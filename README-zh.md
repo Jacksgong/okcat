@@ -6,10 +6,12 @@
 
 [English Doc](https://github.com/Jacksgong/okcat)
 
-ADB Logcat部分是基于JakeWharton的PID Cat，并且适配了各类OkCat的新特性。
-你可以定义任意的日志正则表达式，来适配任意格式的日志，可以将其用于iOS、Android、后端等等。
+- 你可以定义任意的日志正则表达式，来适配任意格式的日志，可以将其用于iOS、Android、后端等等。
+- ADB Logcat部分是基于JakeWharton的PID Cat，并且适配了各类OkCat的新特性 。
 
-##### 特性
+## 特性
+
+> 最主要的特性是：你可以为不同的日志定义自己的正则表达式，以此适配各种类型的日志处理。
 
 - 高亮一些关键字
 ![](https://github.com/Jacksgong/okcat/raw/master/arts/highlight-demo.png)

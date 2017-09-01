@@ -6,10 +6,12 @@ An powerful log processor.
 
 [中文文档](https://github.com/Jacksgong/okcat/blob/master/README-zh.md)
 
-The adb logcat handler is just update to JakeWharton's nice pidcat and I adapt it for more features.
-You can using this log processor with define you own `log-line-regex` and it can work for any log: iOS, Android, Backend, etc.  
+- The adb logcat handler is just update to JakeWharton's nice pidcat and I adapt it for more features.
+- You can using this log processor with define you own `log-line-regex` and it can work for any log: iOS, Android, Backend, etc.  
 
-##### Features
+## Features
+
+> The most important feature is you can define any regex for any kind of log.
 
 - highlight some keywords
 ![](https://github.com/Jacksgong/okcat/raw/master/arts/highlight-demo.png)
