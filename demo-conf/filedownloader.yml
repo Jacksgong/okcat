@@ -11,7 +11,7 @@ package: com.liulishuo.filedownloader.demo
 # on the case of filter logs from Android adb logcat, we using 'adb logcat -v brief -v threadtime' command to obtain logcat
 # in the normal case you don't need ot provide this config, because there is a perfect one on the okcat internal
 # but if you want to customize the regex log from adb logcat, it's free to define it such below
-adb-log-line-regex: 'data,time,process,thread,level,tag,message="(.\S*) (.\S*) (\d*) (\d*) ([A-Z]) ([^:]*): (.*?)$"'
+# adb-log-line-regex: 'data,time,process,thread,level,tag,message="(.\S*) (.\S*) (\d*) (\d*) ([A-Z]) ([^:]*): (.*?)$"'
 
 # separator regex list
 # you can provide multiple regex to separate serial logs
