@@ -36,11 +36,10 @@ pip install okcat
 
 #### Simplest test
 
-1. Create folder: `~/.okcat/`
-2. Download: [filedownloader.yml](https://github.com/Jacksgong/okcat/raw/master/demo-conf/filedownloader.yml) and move to the `~/.okcat/` folder
-3. Running: [Filedownloader-Demo](https://github.com/lingochamp/FileDownloader) on your Android phone 
-4. Execute: `./okcat -y=filedownloader`
-5. Checkout result on terminal
+1. Download: download [filedownloader.yml](https://github.com/Jacksgong/okcat/raw/master/demo-conf/filedownloader.yml) to the current folder or move to the `~/.okcat/` folder
+2. Running: run the demo project on [Filedownloader](https://github.com/lingochamp/FileDownloader) repo to your Android phone and connect your Phone to computer
+3. Execute: `okcat -y=filedownloader`
+4. Done: now, you can checkout the colored logs on terminal, enjoy~
 
 ![](https://github.com/Jacksgong/okcat/raw/master/arts/demo.png)
 
