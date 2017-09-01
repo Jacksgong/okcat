@@ -53,23 +53,23 @@ package: cn.dreamtobe.geekassistant
 log-line-regex: 'data,time,level,tag,process,thread,message = "(.\S*) (.\S*) ([A-Z])/([^:[]*):\[(\d*):([^] ]*)\] (.*?)$"'
 
 separator-regex-list:
-	- 'MAIN,\d*,(\d*)
+  - 'MAIN,\d*,(\d*)
 
 tag-keyword-list:
-	- mylog
+  - mylog
 
 trans-msg-map:
-	'connected-': "Spdy Connected"
-	'disconnected-': "Spdy Disconnected"
+  'connected-': "Spdy Connected"
+  'disconnected-': "Spdy Disconnected"
 
 trans-tag-map:
-	'MyActivityLifecycle': '[Event]'
+  'MyActivityLifecycle': '[Event]'
 
 hide-msg-list:
-	- 'heart-beat'
+  - 'heart-beat'
 
 highlight-list:
-	- 'isSuccess='
+  - 'isSuccess='
 ```
 
 ## 2. Execute

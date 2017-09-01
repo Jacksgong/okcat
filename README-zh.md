@@ -64,42 +64,42 @@ log-line-regex: 'data,time,level,tag,process,thread,message = "(.\S*) (.\S*) ([A
 # 分割正则列表
 # 可以提供多个正则表达式，对日志进行分割
 separator-regex-list:
-	# 对满足以下正则的那行日志开始进行分割，并且以(\d*)的内容作为分割的标题
-	- 'MAIN,\d*,(\d*)
+  # 对满足以下正则的那行日志开始进行分割，并且以(\d*)的内容作为分割的标题
+  - 'MAIN,\d*,(\d*)
 
 # 标签关键字
 # 如果不提供tag-keyword-list将会显示所有日志
 # 如果如下提供了tag-keyword-list将会过滤日志，只显示tag中包含了这里列出关键字的日志
 tag-keyword-list:
-	- mylog
+  - mylog
 
 # 内容转译表
 # 如果日志message中由表中key开头，将会使用彩色的文字在该message开头加上表中的value
 trans-msg-map:
-	# 如这个例子: 
-	# 原message: 'connected-xxx xxx'
-	# 转译后: '| ConnectionMsg已经连接 | connected-xxx xxx' 其中的'ConnectionMsg已经连接'会使用彩色的文字显示
-	'connected-': "ConnectionMsg已经连接"
-	'disconnected-': "ConnectionMsg已断开"
+  # 如这个例子: 
+  # 原message: 'connected-xxx xxx'
+  # 转译后: '| ConnectionMsg已经连接 | connected-xxx xxx' 其中的'ConnectionMsg已经连接'会使用彩色的文字显示
+  'connected-': "ConnectionMsg已经连接"
+  'disconnected-': "ConnectionMsg已断开"
 
 # 标签转译表
 # 如果日志tag中包含表中key开头，将会使用彩色背景的文字在该message开头加上表中的value
 trans-tag-map:
-	# 如这个例子:
-	# 原输出: 'AMyActivityLifecycleEvent	MainActivity onResumed'
-	# 转译后: 'AMyActivityLifecycleEvent	[事件] MainActivity onResumed' 其中'[事件]'会使用彩色背景
-	'MyActivityLifecycle': '[事件]'
+  # 如这个例子:
+  # 原输出: 'AMyActivityLifecycleEvent	MainActivity onResumed'
+  # 转译后: 'AMyActivityLifecycleEvent	[事件] MainActivity onResumed' 其中'[事件]'会使用彩色背景
+  'MyActivityLifecycle': '[事件]'
 
 # 隐藏消息列表
 # 对以以下内容开头并且message长度小于100的内功进行灰色显示处理，在视觉上进行隐藏
 hide-msg-list:
-	# 这里因为心跳日志是非常频繁的日志，通常没有什么问题，因此将其着灰色
-	- 'heart-beat'
+  # 这里案例因为心跳日志是非常频繁的日志，通常没有什么问题，因此将其着灰色
+  - 'heart-beat'
 
 # 高亮列表
 # 对message中的以下内容，背景进行彩色处理使其高亮
 highlight-list:
-	- 'isSuccess='
+  - 'isSuccess='
 ```
 
 ## 2. 执行
@@ -108,13 +108,13 @@ highlight-list:
 
 如果你需要处理运行中App在Logcat的输出，只需要执行:
 
-```
+```shell
 okcat -y=your-conf-name
 ```
 
 如果你需要解析任意格式的日志，只需要执行:
 
-```
+```shell
 okcat -y=your-conf-name your-log-path
 ```
 
