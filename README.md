@@ -64,28 +64,61 @@ sudo pip install okcat --upgrade
 
 You can create your own yaml file as config file on `~/.okcat/` folder or the current folder you will execute `okcat` command, and the filename is free to choose, when you execute the okcat, we will ask you the configure file name you want to apply.
 
-Of course, you don't have to provide each config, if you think which one is needed, just config that one.
+Of course, you don't have to provide all configs such below, if you think which one is needed, just config that one.
 
 ```yml
+# we will filter out logs with the provided package (name)
+# this 'package' keyword is just using for android adb logcat
 package: cn.dreamtobe.geekassistant
+
+# this 'log-line-regex' is just a regex for one line log
+# now we support keyword: 'data' 'time' 'level' 'tag' 'process' 'thread' 'message'
+# you don't have to provide all keyword, but you have to provide at least the 'message'
+# such as: 'message="(\S*)"'
 log-line-regex: 'data,time,level,tag,process,thread,message = "(.\S*) (.\S*) ([A-Z])/([^:[]*):\[(\d*):([^] ]*)\] (.*?)$"'
 
+# on the case of filter logs from Android adb logcat, we using 'adb logcat -v brief -v threadtime' command to obtain logcat
+# in the normal case you don't need ot provide this config, because there is a perfect one on the okcat internal
+# but if you want to customize the regex log from adb logcat, it's free to define it such below
+adb-log-line-regex: 'data,time,process,thread,level,tag,message="(.\S*) (.\S*) (\d*) (\d*) ([A-Z]) ([^:]*): (.*?)$"'
+
+# separator regex list
+# you can provide multiple regex to separate serial logs
 separator-regex-list:
+  # on this case, if one line log match 'MAIN,\d*,(\d*)' regex we will separate logs with \n and output a indie line with the '(\d*)' value as the title of separate
   - 'MAIN,\d*,(\d*)'
 
+# tag keyword list
+# this list keyword is using for filter out which log need to be output
+# all provided keyword will be using for compare with each line tag, if a line with tag not contain any keyword on 'tag-keyword-list' it will be ignore to output
 tag-keyword-list:
   - mylog
 
+# translate message map
+# if a message on a line start with provide keyword on the 'trans-msg-map' we will add the value of the keyword on the start of the message, and the word of value will be corlored to highlight it
 trans-msg-map:
+  # such as this case:
+  # origin message: 'connected-xxx xxx'
+  # after translate: '| Spdy Connected | connected-xxx xxx'
   'connected-': 'Spdy Connected'
   'disconnected-': 'Spdy Disconnected'
 
+# translate tag map
+# if a tag on a line contain provide keyword on the 'trans-tag-map' we will add the value of the keyword on the start of the message, and the background of the value word will be corlored to highlight it
 trans-tag-map:
+  # such as this case:
+  # origin message: 'AMyActivityLifecycleEvent  MainActivity onResumed'
+  # after translate: 'AMyActivityLifecycleEvent [Event] MainActivity onResumed'
   'MyActivityLifecycle': '[Event]'
 
+# hide message list
+# if a message on a line start with provide value on the 'hide-msg-list` and the length of the message is less than 100 word, it would be colored with gray to hide.
 hide-msg-list:
+  # here we hide message start with 'heart-beat' because it is too frequently to output and useless in most case
   - 'heart-beat'
 
+# highlight list
+# if any value on the 'hightlist-list' display on any message, the background of the value word would be colored to highlight it
 highlight-list:
   - 'isSuccess='
 ```
