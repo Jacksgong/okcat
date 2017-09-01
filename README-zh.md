@@ -65,7 +65,7 @@ log-line-regex: 'data,time,level,tag,process,thread,message = "(.\S*) (.\S*) ([A
 # 可以提供多个正则表达式，对日志进行分割
 separator-regex-list:
   # 对满足以下正则的那行日志开始进行分割，并且以(\d*)的内容作为分割的标题
-  - 'MAIN,\d*,(\d*)
+  - 'MAIN,\d*,(\d*)'
 
 # 标签关键字
 # 如果不提供tag-keyword-list将会显示所有日志
@@ -78,9 +78,9 @@ tag-keyword-list:
 trans-msg-map:
   # 如这个例子: 
   # 原message: 'connected-xxx xxx'
-  # 转译后: '| ConnectionMsg已经连接 | connected-xxx xxx' 其中的'ConnectionMsg已经连接'会使用彩色的文字显示
-  'connected-': "ConnectionMsg已经连接"
-  'disconnected-': "ConnectionMsg已断开"
+  # 转译后: '| SPDY已经连接 | connected-xxx xxx' 其中的'SPDY已经连接'会使用彩色的文字显示
+  'connected-': 'SPDY已经连接'
+  'disconnected-': 'SPDY已断开'
 
 # 标签转译表
 # 如果日志tag中包含表中key开头，将会使用彩色背景的文字在该message开头加上表中的value
