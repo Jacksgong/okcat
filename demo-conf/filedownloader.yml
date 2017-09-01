@@ -22,8 +22,8 @@ separator-regex-list:
 # tag keyword list
 # this list keyword is using for filter out which log need to be output
 # all provided keyword will be using for compare with each line tag, if a line with tag not contain any keyword on 'tag-keyword-list' it will be ignore to output
-#tag-keyword-list:
-#  - mytag
+tag-keyword-list:
+  - 'FileDownloader'
 
 # translate message map
 # if a message on a line start with provide keyword on the 'trans-msg-map' we will add the value of the keyword on the start of the message, and the word of value will be corlored to highlight it
@@ -38,9 +38,8 @@ trans-msg-map:
 # if a tag on a line contain provide keyword on the 'trans-tag-map' we will add the value of the keyword on the start of the message, and the background of the value word will be corlored to highlight it
 trans-tag-map:
   # such as this case:
-  # origin message: 'FileDownloadApplication  xxx'
-  # after translate: 'FileDownloadApplication [Thread Change] xxx'
-  'FileDownloadApplication': '[Thread Change]'
+  # origin message: 'FileDownloader.DownloadTaskHunter  xxx'
+  # after translate: 'FileDownloader.DownloadTaskHunter [Status Change] xxx'
   'DownloadTaskHunter': '[Status Change]'
   'ConnectTask': '[Request]'
 
