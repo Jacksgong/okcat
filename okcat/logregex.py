@@ -1,7 +1,7 @@
 #!/usr/bin/python -u
 
 """
-Copyright (C) 2017 Jacksgong(blog.dreamtobe.cn)
+Copyright (C) 2017 Jacksgong(jacksgong.com)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
