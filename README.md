@@ -1,10 +1,10 @@
 # OkCat
 
-![](https://img.shields.io/badge/unscramble-OkCat-blue.svg)
+![](https://img.shields.io/badge/log-okcat-orange.svg)
 ![](https://img.shields.io/badge/license-Apache2-blue.svg)
 [![](https://img.shields.io/badge/readme-English-blue.svg)](https://github.com/Jacksgong/okcat)
 [![](https://img.shields.io/badge/readme-中文-blue.svg)](https://github.com/Jacksgong/okcat/blob/master/README-zh.md)
-[![](https://img.shields.io/badge/pip-okcat-green.svg)](https://pypi.python.org/pypi/OkCat)
+[![](https://img.shields.io/badge/pip-v1.0.7 okcat-green.svg)](https://pypi.python.org/pypi/OkCat)
 
 An powerful log processor.
 
