@@ -25,7 +25,7 @@ from okcat.adb import Adb
 from okcat.terminalcolor import print_tips, print_blue
 
 __author__ = 'JacksGong'
-__version__ = '1.0.6'
+__version__ = '1.0.7'
 __description__ = 'This python script used for combine several Android projects to one project.'
 
 
