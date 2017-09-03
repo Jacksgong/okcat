@@ -95,4 +95,4 @@ def main():
     else:
         parser = LogFileParser(file_path, args.hide_same_tags)
         parser.setup(args.yml)
-        print u''.join(parser.parse()).encode('utf-8').strip()
+        parser.process()

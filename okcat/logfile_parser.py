@@ -50,10 +50,9 @@ class LogFileParser:
         self.processor.setup_condition(tag_keywords=loader.get_tag_keyword_list())
         self.processor.setup_regex_parser(regex_exp=loader.get_log_line_regex())
 
-    def parse(self):
+    def process(self):
         log_file = open(self.file_path, 'r')
 
-        result = ''
         for line in log_file:
             msg_key, linebuf, match_precondition = self.processor.process(line)
 
@@ -61,11 +60,7 @@ class LogFileParser:
                 continue
 
             if msg_key is not None:
-                result += '\n'
-                result += colorize(msg_key + ": ", fg=allocate_color(msg_key))
-                result += '\n'
+                print ''
+                print u''.join(colorize(msg_key + ": ", fg=allocate_color(msg_key))).encode('utf-8').lstrip()
 
-            result += linebuf
-            result += '\n'
-
-        return result
+            print u''.join(linebuf).encode('utf-8').lstrip()

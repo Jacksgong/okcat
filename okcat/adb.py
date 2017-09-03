@@ -257,9 +257,9 @@ class Adb:
 
             if msg_key is not None:
                 print ''
-                print colorize(msg_key + ": ", fg=allocate_color(msg_key))
+                print u''.join(colorize(msg_key + ": ", fg=allocate_color(msg_key))).encode('utf-8').lstrip()
 
-            print u''.join(linebuf).encode('utf-8').strip()
+            print u''.join(linebuf).encode('utf-8').lstrip()
 
     def match_packages(self, token):
         if len(self.package_name) == 0:
