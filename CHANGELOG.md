@@ -1,4 +1,10 @@
-# 1.0.4
+# 1.0.7
+
+2017-09-03
+
+- Enhance: print each line when it has been parsed immediately rather than waiting for parsing whole file to handle case of large log file
+
+# 1.0.6
 
 2017-09-1
 
