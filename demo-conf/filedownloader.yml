@@ -26,7 +26,7 @@ tag-keyword-list:
   - 'FileDownloader'
 
 # translate message map
-# if a message on a line start with provide keyword on the 'trans-msg-map' we will add the value of the keyword on the start of the message, and the word of value will be corlored to highlight it
+# if a message on a line start with provide keyword on the 'trans-msg-map' we will add the value of the keyword on the start of the message, and the word of value will be colored to highlight it
 trans-msg-map:
   # such as this case:
   # origin message: 'filedownloader:lifecycle:over xxx'
@@ -35,7 +35,7 @@ trans-msg-map:
   'fetch data with': 'Start Fetch'
 
 # translate tag map
-# if a tag on a line contain provide keyword on the 'trans-tag-map' we will add the value of the keyword on the start of the message, and the background of the value word will be corlored to highlight it
+# if a tag on a line contain provide keyword on the 'trans-tag-map' we will add the value of the keyword on the start of the message, and the background of the value word will be colored to highlight it
 trans-tag-map:
   # such as this case:
   # origin message: 'FileDownloader.DownloadTaskHunter  xxx'
@@ -51,7 +51,7 @@ hide-msg-list:
   - '~~~callback'
 
 # highlight list
-# if any value on the 'hightlist-list' display on any message, the background of the value word would be colored to highlight it
+# if any value on the 'highlight-list' display on any message, the background of the value word would be colored to highlight it
 highlight-list:
   - 'Path['
   - 'Url['
