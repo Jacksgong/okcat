@@ -1,6 +1,9 @@
 # OkCat
 
-![](https://img.shields.io/badge/log-okcat-orange.svg)
+![](https://img.shields.io/badge/log-any%20format-orange.svg)
+![](https://img.shields.io/badge/log-android%20adb%20logcat-orange.svg)
+![](https://img.shields.io/badge/log-ios-orange.svg)
+![](https://img.shields.io/badge/log-backend-orange.svg)
 ![](https://img.shields.io/badge/license-Apache2-blue.svg)
 [![](https://img.shields.io/badge/readme-English-blue.svg)](https://github.com/Jacksgong/okcat)
 [![](https://img.shields.io/badge/readme-中文-blue.svg)](https://github.com/Jacksgong/okcat/blob/master/README-zh.md)
