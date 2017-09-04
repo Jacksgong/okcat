@@ -60,7 +60,7 @@ sudo pip install okcat --upgrade
 
 ---
 
-#### 1. Define your config file(`.yaml`)
+#### 1. Define your config file(`.yml`)
 
 You can create your own `.yaml` file as config file on `~/.okcat/` folder or the current folder you will execute `okcat` command, and the filename is free to choose, when you execute the okcat, we will ask you the configure file name you want to apply.
 
