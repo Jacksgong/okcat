@@ -1,7 +1,7 @@
 # OkCat
 
 ![](https://img.shields.io/badge/log-any%20format-orange.svg)
-![](https://img.shields.io/badge/log-android%20adb%20logcat-orange.svg)
+![](https://img.shields.io/badge/log-android-orange.svg)
 ![](https://img.shields.io/badge/log-ios-orange.svg)
 ![](https://img.shields.io/badge/log-backend-orange.svg)
 ![](https://img.shields.io/badge/license-Apache2-blue.svg)
