@@ -22,10 +22,10 @@ from helper import LOG_LEVELS, is_path
 from logfile_parser import LogFileParser
 
 from okcat.adb import Adb
-from okcat.terminalcolor import print_tips, print_blue
+from okcat.terminalcolor import print_tips, print_blue, print_warn
 
 __author__ = 'JacksGong'
-__version__ = '1.0.7'
+__version__ = '1.0.8'
 __description__ = 'This python script used for combine several Android projects to one project.'
 
 
@@ -84,14 +84,17 @@ def main():
         file_path = candidate_path[0]
 
     if file_path is None:
+        is_interrupt_by_user = False
+
         _adb = Adb()
         _adb.setup(args)
-        while True:
-            try:
-                _adb.loop()
-            except KeyboardInterrupt:
-                break
+        try:
+            _adb.loop()
+        except KeyboardInterrupt:
+            is_interrupt_by_user = True
 
+        if not is_interrupt_by_user:
+            print_warn('ADB CONNECTION IS LOST.')
     else:
         parser = LogFileParser(file_path, args.hide_same_tags)
         parser.setup(args.yml)
