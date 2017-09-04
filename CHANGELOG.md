@@ -1,3 +1,9 @@
+# 1.0.8
+
+2017-09-04
+
+- Feat: handle the case of adb connection is lost when using adb logcat
+
 # 1.0.7
 
 2017-09-03
