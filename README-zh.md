@@ -146,6 +146,12 @@ okcat -y=your-conf-name
 okcat -y=your-conf-name your-log-path
 ```
 
+Andrdoid工程师查看ADB Locat最简单的使用
+
+```shell
+okcat 包名
+```
+
 ## LICENSE
 
 ```

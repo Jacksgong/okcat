@@ -135,14 +135,20 @@ highlight-list:
 
 You can just parse logcat from running adb:
 
-```
+```shell
 okcat -y=your-conf-name
 ```
 
 You also can parse your log file through:
 
-```
+```shell
 okcat -y=your-conf-name your-log-path
+```
+
+Simplest case for any developer:
+
+```shell
+okcat your.package.name
 ```
 
 ## LICENSE
