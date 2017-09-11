@@ -16,6 +16,12 @@
 - 你可以定义任意的日志正则表达式，来适配任意格式的日志，可以将其用于iOS、Android、后端等等。
 - ADB Logcat部分是基于JakeWharton的PID Cat，并且适配了各类OkCat的新特性 。
 
+Andrdoid工程师查看ADB Logcat最简单的使用:
+
+```shell
+okcat 包名
+```
+
 ## 特性
 
 > 最主要的特性是：你可以为不同的日志定义自己的正则表达式，以此适配各种类型的日志处理。
@@ -144,12 +150,6 @@ okcat -y=your-conf-name
 
 ```shell
 okcat -y=your-conf-name your-log-path
-```
-
-Andrdoid工程师查看ADB Locat最简单的使用
-
-```shell
-okcat 包名
 ```
 
 ## LICENSE
