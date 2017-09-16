@@ -56,5 +56,5 @@ def get_conf_path(conf_name):
     else:
         result = '~/.okcat/' + conf_name
 
-    print 'using config on %s' % result
+    print('using config on %s' % result)
     return result

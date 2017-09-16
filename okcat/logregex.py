@@ -44,7 +44,7 @@ class LogRegex:
             else:
                 print_warn("not support key[%s] only support: %s" % (key, ALL_SUPPORT_KEY))
 
-        print "find regex: " + self.key_order.__str__() + " with " + regex
+        print("find regex: " + self.key_order.__str__() + " with " + regex)
 
     def parse(self, line):
         data = None

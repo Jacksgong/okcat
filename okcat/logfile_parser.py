@@ -60,7 +60,7 @@ class LogFileParser:
                 continue
 
             if msg_key is not None:
-                print ''
-                print u''.join(colorize(msg_key + ": ", fg=allocate_color(msg_key))).encode('utf-8').lstrip()
+                print('')
+                print(u''.join(colorize(msg_key + ": ", fg=allocate_color(msg_key))).encode('utf-8').lstrip())
 
-            print u''.join(linebuf).encode('utf-8').lstrip()
+            print(u''.join(linebuf).encode('utf-8').lstrip())

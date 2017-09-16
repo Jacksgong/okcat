@@ -73,9 +73,9 @@ class ConfLoader:
         return self.yml_conf[keyword]
 
     def dump(self):
-        print 'package: %s' % self.get_package()
-        print 'log-line-regex: %s' % self.get_log_line_regex()
-        print 'adb-log-line-regex: %s' % self.get_adb_log_line_regex()
+        print('package: %s' % self.get_package())
+        print('log-line-regex: %s' % self.get_log_line_regex())
+        print('adb-log-line-regex: %s' % self.get_adb_log_line_regex())
         self.dump_list('tag-keyword-list')
         self.dump_unicode_map('trans-msg-map')
         self.dump_unicode_map('trans-tag-map')
@@ -86,17 +86,17 @@ class ConfLoader:
     def dump_unicode_map(self, map_key):
         unicode_map = self.get_value(map_key)
         if unicode_map is None:
-            print '%s: None' % map_key
+            print('%s: None' % map_key)
         else:
-            print '%s:' % map_key
+            print('%s:' % map_key)
             for key in unicode_map:
-                print u'    "%s" : "%s"' % (key, unicode_map[key])
+                print(u'    "%s" : "%s"' % (key, unicode_map[key]))
 
     def dump_list(self, list_key):
         cur_list = self.get_value(list_key)
         if cur_list is None:
-            print '%s: None' % list_key
+            print('%s: None' % list_key)
         else:
-            print '%s: ' % list_key
+            print('%s: ' % list_key)
             for value in cur_list:
-                print '    - %s' % value
+                print('    - %s' % value)

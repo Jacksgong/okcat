@@ -32,11 +32,11 @@ __description__ = 'This python script used for combine several Android projects 
 def main():
     print("-------------------------------------------------------")
     print("                  OkCat v" + __version__)
-    print ""
-    print "Thanks for using okcat! Now, the doc is available on: "
+    print("")
+    print("Thanks for using okcat! Now, the doc is available on: ")
     print_blue("        https://github.com/Jacksgong/okcat")
-    print ""
-    print "                   Have Fun!"
+    print("")
+    print("                   Have Fun!")
     print("-------------------------------------------------------")
 
     parser = argparse.ArgumentParser(description='Filter logcat by package name')
