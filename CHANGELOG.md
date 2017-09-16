@@ -1,3 +1,9 @@
+# 1.0.9
+
+2017-09-16
+
+- Fix: missing parentheses in call to 'print' error occurred on python 3.x Closes #1
+
 # 1.0.8
 
 2017-09-04
