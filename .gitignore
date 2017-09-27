@@ -1,4 +1,7 @@
 /.idea/workspace.xml
+/.idea/misc.xml
+/.idea/okcat.iml
+/.idea/modules.xml
 *.pyc
 *.egg-info
 /dist
