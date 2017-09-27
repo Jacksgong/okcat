@@ -8,6 +8,7 @@ python:
   - "3.6"
 
 install:
-  - travis_retry pip install okcat
+        #  - travis_retry pip install okcat
+  - bash debug.sh
 script:
   - okcat help
