@@ -24,7 +24,7 @@ from okcat.logfile_parser import LogFileParser
 from okcat.terminalcolor import print_tips, print_blue, print_warn
 
 __author__ = 'JacksGong'
-__version__ = '1.0.9'
+__version__ = '1.1.0'
 __description__ = 'This python script used for combine several Android projects to one project.'
 
 

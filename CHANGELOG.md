@@ -1,3 +1,9 @@
+# 1.1.0
+
+2017-09-27
+
+- Fix: fix import file failed on python 3.x
+
 # 1.0.9
 
 2017-09-16
