@@ -18,7 +18,7 @@ limitations under the License.
 
 import re
 
-from terminalcolor import print_warn
+from okcat import print_warn
 
 __author__ = 'jacks.gong'
 

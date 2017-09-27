@@ -18,10 +18,9 @@ limitations under the License.
 import argparse
 from sys import argv
 
-from helper import LOG_LEVELS, is_path
-from logfile_parser import LogFileParser
-
 from okcat.adb import Adb
+from okcat.helper import LOG_LEVELS, is_path
+from okcat.logfile_parser import LogFileParser
 from okcat.terminalcolor import print_tips, print_blue, print_warn
 
 __author__ = 'JacksGong'
