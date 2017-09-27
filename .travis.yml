@@ -11,4 +11,4 @@ python:
 install:
   - travis_retry pip install okcat
 script:
-  - okcat
+  - okcat help
