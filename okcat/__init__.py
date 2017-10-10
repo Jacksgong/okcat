@@ -21,7 +21,7 @@ from sys import argv
 from okcat.adb import Adb
 from okcat.helper import LOG_LEVELS, is_path
 from okcat.logfile_parser import LogFileParser
-from okcat.terminalcolor import print_tips, print_blue, print_warn
+from okcat.terminalcolor import print_tips, print_blue, print_warn, print_header, print_exit
 
 __author__ = 'JacksGong'
 __version__ = '1.1.0'
@@ -95,6 +95,15 @@ def main():
         if not is_interrupt_by_user:
             print_warn('ADB CONNECTION IS LOST.')
     else:
+        if args.yml is None:
+            print("")
+            print_exit("Please using '-y=conf-name' to provide config file to parse this log file.")
+            print(
+                "The config file is very very simple! More detail about config file please move to : https://github.com/Jacksgong/okcat")
+            print("")
+            print("-------------------------------------------------------")
+            exit()
+
         parser = LogFileParser(file_path, args.hide_same_tags)
         parser.setup(args.yml)
         parser.process()
