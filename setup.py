@@ -24,7 +24,7 @@ with open('README.md') as f:
 
 setup(
     name="OkCat",
-    version="1.1.0",
+    version="1.1.1",
     packages=find_packages(exclude=['demo-conf', 'arts']),
 
     # Project uses reStructuredText, so ensure that the docutils get

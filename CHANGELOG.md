@@ -1,3 +1,9 @@
+# 1.1.1
+
+2017-10-10
+
+- Feat: show tips instead of crash when user don't provide config-file name to parse log file. Closes #2
+
 # 1.1.0
 
 2017-09-27
