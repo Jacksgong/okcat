@@ -153,6 +153,8 @@ okcat -y=your-conf-name
 okcat -y=your-conf-name your-log-path
 ```
 
+> 小技巧: 如果你使用ITerm2的话，你可以使用`Command + K`来刷新当前回话中的所有内容，以此快速启动新的okcat解析，而不用再另外创建一个新的会话。
+
 ## LICENSE
 
 ```
