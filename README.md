@@ -152,7 +152,7 @@ Simplest case for any developer:
 okcat your.package.name
 ```
 
-> Tips: If you are using ITerm2, you can use `command + k` to flush all content on the session and start a new okcat parse instead of creating anthor new session.
+> Tips: You can use `command + k` on Terminal to flush all content on the session and start a new okcat parse instead of creating anthor new session.
 
 ## LICENSE
 
