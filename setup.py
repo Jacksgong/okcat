@@ -21,7 +21,7 @@ from setuptools import setup, find_packages
 # noinspection PyArgumentList
 setup(
     name="OkCat",
-    version="1.1.1",
+    version="1.1.2",
     packages=find_packages(exclude=['demo-conf', 'arts']),
 
     # Project uses reStructuredText, so ensure that the docutils get
