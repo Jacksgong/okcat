@@ -19,9 +19,6 @@ from setuptools import setup, find_packages
 
 # Get the long description from the README file
 # noinspection PyArgumentList
-with open('README.md') as f:
-    long_description = f.read()
-
 setup(
     name="OkCat",
     version="1.1.1",
@@ -35,7 +32,7 @@ setup(
     author="Jacksgong",
     author_email="igzhenjie@gmail.com",
     description="An powerful log processor",
-    long_description=long_description,
+    long_description='More detail please move to https://github.com/Jacksgong/okcat',
     license="Apache2",
     keywords="okcat log 'log processor' 'log filter'",
     url="https://github.com/Jacksgong/okcat",
