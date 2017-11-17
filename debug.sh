@@ -1,3 +1,3 @@
 #!/bin/bash
-pip uninstall okcat --yes
-python setup.py install
+sudo pip uninstall okcat --yes
+sudo python setup.py install
