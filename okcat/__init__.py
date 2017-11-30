@@ -24,7 +24,7 @@ from okcat.logfile_parser import LogFileParser
 from okcat.terminalcolor import print_tips, print_blue, print_warn, print_header, print_exit
 
 __author__ = 'JacksGong'
-__version__ = '1.1.2'
+__version__ = '1.1.3'
 __description__ = 'This python script used for combine several Android projects to one project.'
 
 
@@ -77,12 +77,25 @@ def main():
 
     args = parser.parse_args()
 
-    file_path = None
+    file_paths = []
     candidate_path = args.package_or_path
-    if candidate_path is not None and len(candidate_path) > 0 and is_path(candidate_path[0]):
-        file_path = candidate_path[0]
+    for path in candidate_path:
+        if is_path(path):
+            file_paths.append(path)
 
-    if file_path is None:
+    if file_paths:
+        if args.yml is None:
+            print("")
+            print_exit("Please using '-y=conf-name' to provide config file to parse this log file.")
+            print("The config file is very very simple! More detail about config file please move to : https://github.com/Jacksgong/okcat")
+            print("")
+            print("-------------------------------------------------------")
+            exit()
+
+        parser = LogFileParser(file_paths, args.hide_same_tags)
+        parser.setup(args.yml)
+        parser.process()
+    else:
         is_interrupt_by_user = False
 
         _adb = Adb()
@@ -94,16 +107,3 @@ def main():
 
         if not is_interrupt_by_user:
             print_warn('ADB CONNECTION IS LOST.')
-    else:
-        if args.yml is None:
-            print("")
-            print_exit("Please using '-y=conf-name' to provide config file to parse this log file.")
-            print(
-                "The config file is very very simple! More detail about config file please move to : https://github.com/Jacksgong/okcat")
-            print("")
-            print("-------------------------------------------------------")
-            exit()
-
-        parser = LogFileParser(file_path, args.hide_same_tags)
-        parser.setup(args.yml)
-        parser.process()

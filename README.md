@@ -79,7 +79,7 @@ package: com.liulishuo.filedownloader.demo
 # now we support keyword: 'data' 'time' 'level' 'tag' 'process' 'thread' 'message'
 # you don't have to provide all keyword, but you have to provide at least the 'message'
 # such as: 'message="(\S*)"'
-log-line-regex: 'data,time,level,tag,process,thread,message = "(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
+log-line-regex: 'data,time,process,thread,level,tag,message = "(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
 
 # on the case of filter logs from Android adb logcat, we using 'adb logcat -v brief -v threadtime' command to obtain logcat
 # in the normal case you don't need ot provide this config, because there is a perfect one on the okcat internal
@@ -143,7 +143,7 @@ okcat -y=your-conf-name
 You also can parse your log file through:
 
 ```shell
-okcat -y=your-conf-name your-log-path
+okcat -y=your-conf-name your-log-path1 your-log-path2 your-log-path3 ... 
 ```
 
 Simplest case for any developer:
