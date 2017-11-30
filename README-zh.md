@@ -85,7 +85,7 @@ package: com.liulishuo.filedownloader.demo
 # 配置对于一行日志的正则表达式，目前支持正则出data、time、level、tag、process、thread、message
 # 不过不一定要全部提供，至少需要提供一个message
 # 如log-line-regex: 'message="(.\S*)"'
-log-line-regex: 'data,time,level,tag,process,thread,message = "(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
+log-line-regex: 'data,time,process,thread,level,tag,message = "(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
 
 # 在Android的ADB的情况下，我们是使用adb logcat -v brief -v threadtime
 # 一般情况下不需要adb-log-line-regex配置，我们已经有很完善的这块的正则，但是如果对这个需要特别定制便可以使用以下定制
@@ -150,7 +150,7 @@ okcat -y=your-conf-name
 如果你需要解析任意格式的日志，只需要执行:
 
 ```shell
-okcat -y=your-conf-name your-log-path
+okcat -y=your-conf-name your-log-path1 your-log-path2 your-log-path3 ... 
 ```
 
 > 小技巧: 你在终端中使用`Command + K`来刷新当前回话中的所有内容，以此快速启动新的okcat解析，而不用再另外创建一个新的会话。
