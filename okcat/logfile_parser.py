@@ -26,23 +26,23 @@ from okcat.terminalcolor import colorize, allocate_color
 TIME_REGEX = r'\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+'
 
 class LogFileParser:
-    file_paths = []
+    filePaths = []
     valid = False
     processor = None
-    hide_same_tags = None
+    hideSameTags = None
     logStreams = []
     cacheLines = []
     lineTimes = []
 
     def __init__(self, file_paths, hide_same_tags):
-        self.file_paths = file_paths
-        self.hide_same_tags = hide_same_tags
+        self.filePaths = file_paths
+        self.hideSameTags = hide_same_tags
 
     def setup(self, yml_file_name):
-        for file in self.file_paths:
-            if not exists(file):
-                exit("log path: %s is not exist!" % file)
-        self.processor = LogProcessor(self.hide_same_tags)
+        for path in self.filePaths:
+            if not exists(path):
+                exit("log path: %s is not exist!" % path)
+        self.processor = LogProcessor(self.hideSameTags)
 
         loader = ConfLoader()
         loader.load(get_conf_path(yml_file_name))
@@ -55,8 +55,8 @@ class LogFileParser:
         self.processor.setup_condition(tag_keywords=loader.get_tag_keyword_list())
         self.processor.setup_regex_parser(regex_exp=loader.get_log_line_regex())
 
-    def colorOutputLine(self, line):
-        msg_key, linebuf, match_precondition = self.processor.process(line)
+    def color_line(self, line):
+        msg_key, line_buf, match_precondition = self.processor.process(line)
 
         if not match_precondition:
             return
@@ -65,37 +65,37 @@ class LogFileParser:
             print('')
             print(u''.join(colorize(msg_key + ": ", fg=allocate_color(msg_key))).encode('utf-8').lstrip())
 
-        print(u''.join(linebuf).encode('utf-8').lstrip())
+        print(u''.join(line_buf).encode('utf-8').lstrip())
 
-    def popupCacheLine(self, popupIndex):
-        needReadStream = self.logStreams[popupIndex]
-        newLine = needReadStream.readline()
-        if newLine:
-            matchResult = re.search(TIME_REGEX, newLine)
-            if matchResult:
-                self.lineTimes.insert(popupIndex, matchResult.group())
-                self.cacheLines.insert(popupIndex, newLine)
+    def popup_cache_line(self, popup_index):
+        need_read_stream = self.logStreams[popup_index]
+        new_line = need_read_stream.readline()
+        if new_line:
+            match_result = re.search(TIME_REGEX, new_line)
+            if match_result:
+                self.lineTimes.insert(popup_index, match_result.group())
+                self.cacheLines.insert(popup_index, new_line)
             else:
-                self.colorOutputLine(newLine)
-                self.popupCacheLine(popupIndex)
+                self.color_line(new_line)
+                self.popup_cache_line(popup_index)
         else:
-            needReadStream.close()
-            self.logStreams.pop(popupIndex)
+            need_read_stream.close()
+            self.logStreams.pop(popup_index)
 
 
 
     def process(self):
-        originIndex = 0
-        for flile in self.file_paths:
-            stream = open(flile, "r")
+        origin_index = 0
+        for path in self.filePaths:
+            stream = open(path, "r")
             self.logStreams.append(stream)
-            self.popupCacheLine(originIndex)
-            originIndex += 1
+            self.popup_cache_line(origin_index)
+            origin_index += 1
 
-        while (self.cacheLines):
-            minIndex = self.lineTimes.index(min(self.lineTimes))
-            self.lineTimes.pop(minIndex)
-            seletedLine = self.cacheLines.pop(minIndex)
-            self.colorOutputLine(seletedLine)
-            self.popupCacheLine(minIndex)
+        while self.cacheLines:
+            min_index = self.lineTimes.index(min(self.lineTimes))
+            self.lineTimes.pop(min_index)
+            selected_line = self.cacheLines.pop(min_index)
+            self.color_line(selected_line)
+            self.popup_cache_line(min_index)
             
