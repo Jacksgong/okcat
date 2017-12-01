@@ -1,3 +1,15 @@
+# 1.1.3
+
+2017-12-01
+
+- Feat: support combine and parse multiple log-files once time
+
+# 1.1.2
+
+2017-11-17
+
+- Fix: fix unicode decode error on setup on windows system closes #4
+
 # 1.1.1
 
 2017-10-10
