@@ -154,6 +154,21 @@ okcat your.package.name
 
 > Tips: You can use `command + k` on Terminal to flush all content on the session and start a new okcat parse instead of creating anthor new session.
 
+## My Terminal Config
+
+If you want to adapter the same theme like screenshot above, it's very easy:
+
+- Firstly, please use [powerlevel9k](https://github.com/bhilburn/powerlevel9k) theme(Install the Powerlevel9k Theme and Powerline Fonts as the powerlevel9k repo readme doc said).
+- Secondly, please config the [iTerm2-Neutron](https://github.com/Ch4s3/iTerm2-Neutron) color scheme.
+- Thirdly, please config your shell(If you are using zsh, just add following code to the `~/.zshrc` file):
+```
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
+POWERLEVEL9K_NODE_VERSION_BACKGROUND='022'
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+```
+
 ## LICENSE
 
 ```
