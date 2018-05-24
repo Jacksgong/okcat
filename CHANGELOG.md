@@ -1,3 +1,9 @@
+# 1.1.4
+
+2018-05-24
+
+- Feat: support 'from' keyword to let yml config file extends from exist yml file
+
 # 1.1.3
 
 2017-12-01
