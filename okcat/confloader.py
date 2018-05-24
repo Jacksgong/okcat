@@ -19,13 +19,14 @@ limitations under the License.
 
 import yaml
 
-from okcat.helper import handle_home_case
+from okcat.helper import handle_home_case, get_conf_path
 
 __author__ = 'JacksGong'
 
 
 class ConfLoader:
     yml_conf = None
+    from_yml_conf = None
 
     def __init__(self):
         pass
@@ -34,11 +35,19 @@ class ConfLoader:
         with open(handle_home_case(yml_file_path), 'r') as stream:
             try:
                 self.yml_conf = yaml.load(stream)
-                # print(u'find yml configuration on %s:' % yml_file_path)
-                # self.dump()
+                from_conf_path = self.get_from()
+                if from_conf_path is not None:
+                    self.from_yml_conf = ConfLoader()
+                    self.from_yml_conf.load(get_conf_path(from_conf_path))
+
+                    # print(u'find yml configuration on %s:' % yml_file_path)
+                    # self.dump()
 
             except yaml.YAMLError as exc:
                 print(exc)
+
+    def get_from(self):
+        return self.get_value('from')
 
     def get_package(self):
         return self.get_value('package')
@@ -69,10 +78,14 @@ class ConfLoader:
 
     def get_value(self, keyword):
         if keyword not in self.yml_conf:
-            return None
+            if keyword != 'from' and self.from_yml_conf is not None:
+                return self.from_yml_conf.get_value(keyword)
+            else:
+                return None
         return self.yml_conf[keyword]
 
     def dump(self):
+        print('from: %s' % self.get_from())
         print('package: %s' % self.get_package())
         print('log-line-regex: %s' % self.get_log_line_regex())
         print('adb-log-line-regex: %s' % self.get_adb_log_line_regex())
