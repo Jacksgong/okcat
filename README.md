@@ -7,7 +7,7 @@
 ![](https://img.shields.io/badge/license-Apache2-blue.svg)
 [![](https://img.shields.io/badge/readme-English-blue.svg)](https://github.com/Jacksgong/okcat)
 [![](https://img.shields.io/badge/readme-中文-blue.svg)](https://github.com/Jacksgong/okcat/blob/master/README-zh.md)
-[![](https://img.shields.io/badge/pip-v1.1.3%20okcat-yellow.svg)](https://pypi.python.org/pypi/OkCat)
+[![](https://img.shields.io/badge/pip-v1.1.4%20okcat-yellow.svg)](https://pypi.python.org/pypi/OkCat)
 [![Build Status](https://travis-ci.org/Jacksgong/okcat.svg?branch=master)](https://travis-ci.org/Jacksgong/okcat)
 
 An powerful log processor.
@@ -71,6 +71,9 @@ You can create your own `.yaml` file as config file on `~/.okcat/` folder or the
 the following is demo of config file, Of course, you don't have to provide all configs such below, if you think which one is needed, just config that one.
 
 ```yml
+# extends from exist yml file
+# from: exist-yml-name
+
 # we will filter out logs with the provided package (name)
 # this 'package' keyword is just using for android adb logcat
 package: com.liulishuo.filedownloader.demo

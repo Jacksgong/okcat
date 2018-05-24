@@ -7,7 +7,7 @@
 ![](https://img.shields.io/badge/license-Apache2-blue.svg)
 [![](https://img.shields.io/badge/readme-English-blue.svg)](https://github.com/Jacksgong/okcat)
 [![](https://img.shields.io/badge/readme-中文-blue.svg)](https://github.com/Jacksgong/okcat/blob/master/README-zh.md)
-[![](https://img.shields.io/badge/pip-v1.1.3%20okcat-yellow.svg)](https://pypi.python.org/pypi/OkCat)
+[![](https://img.shields.io/badge/pip-v1.1.4%20okcat-yellow.svg)](https://pypi.python.org/pypi/OkCat)
 [![Build Status](https://travis-ci.org/Jacksgong/okcat.svg?branch=master)](https://travis-ci.org/Jacksgong/okcat)
 
 强大的日志处理组件。
@@ -78,6 +78,9 @@ sudo pip install okcat --upgrade
 下面是配置文件的案例，里面列出了目前支持的所有的配置，当然你不需要配置所有的特性，只需要配置你需要的即可。
 
 ```yml
+# 继承存在的其他yml的配置
+from: exist-yml-file-name
+
 # 定义连线手机进行ADB处理时，需要过滤的包名；
 # 如果不使用Android的ADB功能，便不需要配置
 package: com.liulishuo.filedownloader.demo
