@@ -163,7 +163,7 @@ class Adb:
                 pass
 
         if sys.stdin.isatty():
-            self.adb=subprocess.Popen(adb_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=PIPE)
+            self.adb = subprocess.Popen(adb_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=PIPE)
         else:
             self.adb = FakeStdinProcess()
 
