@@ -34,7 +34,7 @@ __author__ = 'JacksGong'
 import sys
 import re
 import subprocess
-from subprocess import PIPE
+from subprocess import PIPE, STDOUT
 
 # noinspection Annotator
 PID_LINE = re.compile(r'^\w+\s+(\w+)\s+\w+\s+\w+\s+\w+\s+\w+\s+\w+\s+\w\s([\w|\.|\/]+)')
@@ -163,7 +163,7 @@ class Adb:
                 pass
 
         if sys.stdin.isatty():
-            self.adb = subprocess.Popen(adb_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=PIPE)
+            self.adb = subprocess.Popen(adb_command, stdout=PIPE, stderr=STDOUT, stdin=PIPE)
         else:
             self.adb = FakeStdinProcess()
 
@@ -192,7 +192,6 @@ class Adb:
         while self.adb.poll() is None:
             try:
                 line = self.adb.stdout.readline()
-                print(line)
             except KeyboardInterrupt:
                 break
             if len(line) == 0:
