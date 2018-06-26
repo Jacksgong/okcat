@@ -1,3 +1,9 @@
+# 1.1.6
+
+2018-06-26
+
+- Fix: fix encode issue on python3 - by [Ryfthink](https://github.com/Ryfthink)
+
 # 1.1.5
 
 2018-06-24
