@@ -18,7 +18,7 @@ limitations under the License.
 from os.path import exists
 
 from okcat.confloader import ConfLoader
-from okcat.helper import LOG_LEVELS_MAP, get_conf_path, handle_home_case
+from okcat.helper import LOG_LEVELS_MAP, get_conf_path, handle_home_case, print_unicode
 from okcat.logprocessor import LogProcessor, indent_wrap
 from okcat.logregex import LogRegex
 from okcat.terminalcolor import termcolor, RED, RESET, YELLOW, GREEN, colorize, WHITE, allocate_color
@@ -34,7 +34,7 @@ __author__ = 'JacksGong'
 import sys
 import re
 import subprocess
-from subprocess import PIPE
+from subprocess import PIPE, STDOUT
 
 # noinspection Annotator
 PID_LINE = re.compile(r'^\w+\s+(\w+)\s+\w+\s+\w+\s+\w+\s+\w+\s+\w+\s+\w\s([\w|\.|\/]+)')
@@ -130,7 +130,7 @@ class Adb:
             self.all = True
 
         # Store the names of packages for which to match all processes.
-        self.catchall_package = filter(lambda package: package.find(":") == -1, self.package_name)
+        self.catchall_package = list(filter(lambda package: package.find(":") == -1, self.package_name))
         # Store the name of processes to match exactly.
         named_processes = filter(lambda package: package.find(":") != -1, self.package_name)
         # Convert default process names from <package>: (cli notation) to <package> (android notation) in the exact names match group.
@@ -163,7 +163,7 @@ class Adb:
                 pass
 
         if sys.stdin.isatty():
-            self.adb = subprocess.Popen(adb_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=PIPE)
+            self.adb = subprocess.Popen(adb_command, stdout=PIPE, stderr=STDOUT, stdin=PIPE)
         else:
             self.adb = FakeStdinProcess()
 
@@ -192,7 +192,6 @@ class Adb:
         while self.adb.poll() is None:
             try:
                 line = self.adb.stdout.readline()
-                print(line)
             except KeyboardInterrupt:
                 break
             if len(line) == 0:
@@ -262,9 +261,9 @@ class Adb:
 
             if msg_key is not None:
                 print('')
-                print(u''.join(colorize(msg_key + ": ", fg=allocate_color(msg_key))).encode('utf-8').lstrip())
+                print_unicode(u''.join(colorize(msg_key + ": ", fg=allocate_color(msg_key))).encode('utf-8').lstrip())
 
-            print(u''.join(linebuf).encode('utf-8').lstrip())
+            print_unicode(u''.join(linebuf).encode('utf-8').lstrip())
 
     def match_packages(self, token):
         if len(self.package_name) == 0:

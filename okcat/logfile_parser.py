@@ -19,7 +19,7 @@ import re
 from os.path import exists
 
 from okcat.confloader import ConfLoader
-from okcat.helper import get_conf_path
+from okcat.helper import get_conf_path, print_unicode
 from okcat.logprocessor import LogProcessor
 from okcat.terminalcolor import colorize, allocate_color
 
@@ -63,9 +63,9 @@ class LogFileParser:
 
         if msg_key is not None:
             print('')
-            print(u''.join(colorize(msg_key + ": ", fg=allocate_color(msg_key))).encode('utf-8').lstrip())
+            print_unicode(u''.join(colorize(msg_key + ": ", fg=allocate_color(msg_key))).encode('utf-8').lstrip())
 
-        print(u''.join(line_buf).encode('utf-8').lstrip())
+        print_unicode(u''.join(line_buf).encode('utf-8').lstrip())
 
     def popup_cache_line(self, popup_index):
         need_read_stream = self.logStreams[popup_index]

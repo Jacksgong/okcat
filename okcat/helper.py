@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import re
+import sys
+
 from os import environ, getcwd
 
 from os.path import exists
@@ -58,3 +60,16 @@ def get_conf_path(conf_name):
 
     print('using config on %s' % result)
     return result
+
+
+def print_unicode(line):
+    if sys.version_info >= (3, 0):
+        print(bytes.decode(line))
+    else:
+        print(line)
+
+def line_rstrip(line):
+    if sys.version_info >= (3, 0):
+        return line.rstrip()
+    else:
+        return line.decode('utf-8').rstrip()
