@@ -17,6 +17,7 @@ limitations under the License.
 """
 import re
 
+from okcat.helper import line_rstrip
 from okcat.logregex import LogRegex
 from okcat.logseparator import LogSeparator
 from okcat.terminalcolor import allocate_color, colorize, TAGTYPES, termcolor, BLACK, RESET
@@ -85,7 +86,7 @@ class LogProcessor:
         self.regex_parser = LogRegex(regex_exp)
 
     def process(self, origin_line):
-        origin_line = origin_line.decode('utf-8', 'replace').rstrip()
+        origin_line = line_rstrip(origin_line)
 
         if len(origin_line.strip()) <= 0:
             return None, None, False
