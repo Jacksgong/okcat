@@ -163,9 +163,10 @@ class Adb:
                 pass
 
         if sys.stdin.isatty():
-            self.adb = subprocess.Popen(adb_command, stdin=PIPE, stdout=PIPE)
+            self.adb = subprocess.Popen(adb_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=PIPE)
         else:
             self.adb = FakeStdinProcess()
+
         self.pids = set()
 
         ps_command = base_adb_command + ['shell', 'ps']
@@ -189,12 +190,17 @@ class Adb:
         app_pid = None
 
         while self.adb.poll() is None:
-            # try:
-            line = self.adb.stdout.readline().decode('utf-8', 'replace').strip()
-            # except KeyboardInterrupt:
-            #     break
+            try:
+                line = self.adb.stdout.readline()
+                print(line)
+            except KeyboardInterrupt:
+                break
             if len(line) == 0:
                 break
+
+            line = line.decode('utf-8', 'replace').strip()
+            if len(line) == 0:
+                continue
 
             bug_line = BUG_LINE.match(line)
             if bug_line is not None:
