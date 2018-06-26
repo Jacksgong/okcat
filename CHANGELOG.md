@@ -1,3 +1,9 @@
+# 1.1.5
+
+2018-06-24
+
+- Fix: some dvices adb lost connection, closes #9 - by [Ryfthink](https://github.com/Ryfthink)
+
 # 1.1.4
 
 2018-05-24
