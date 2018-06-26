@@ -1,0 +1,11 @@
+log-line-regex: 'data,time,process,thread,level,tag,message = "(\S*) *(\S*) *(\d*) *(\d*) ([A-Z]) ([^:]*): (.*?)$"'
+
+trans-msg-map:
+  'Unknown': '未知'
+
+trans-tag-map:
+  'SystemServiceManager': '[System Service Manager]'
+  'RescueParty': '[恢复部分]'
+
+highlight-list:
+  - 'complete'

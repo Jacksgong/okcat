@@ -12,3 +12,5 @@ install:
   - bash debug.sh
 script:
   - okcat help
+  - cd demo-conf
+  - okcat -y=demo-config demo-log-file.log
