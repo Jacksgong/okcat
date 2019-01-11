@@ -78,7 +78,7 @@ sudo pip install okcat --upgrade
 下面是配置文件的案例，里面列出了目前支持的所有的配置，当然你不需要配置所有的特性，只需要配置你需要的即可。
 
 ```yml
-# 继承存在的其他yml的配置
+# 继承存在的其他yml的配置(不需要`.yml`后缀)
 from: exist-yml-file-name
 
 # 定义连线手机进行ADB处理时，需要过滤的包名；

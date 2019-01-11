@@ -71,7 +71,7 @@ You can create your own `.yaml` file as config file on `~/.okcat/` folder or the
 the following is demo of config file, Of course, you don't have to provide all configs such below, if you think which one is needed, just config that one.
 
 ```yml
-# extends from exist yml file
+# extends from exist yml file (provide only filename without `.yml` extension)
 # from: exist-yml-name
 
 # we will filter out logs with the provided package (name)
