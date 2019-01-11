@@ -25,6 +25,7 @@ from okcat.terminalcolor import colorize, allocate_color
 
 TIME_REGEX = r'\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+'
 
+
 class LogFileParser:
     filePaths = []
     valid = False
@@ -53,7 +54,12 @@ class LogFileParser:
         self.processor.setup_separator(separator_rex_list=loader.get_separator_regex_list())
         self.processor.setup_highlight(highlight_list=loader.get_highlight_list())
         self.processor.setup_condition(tag_keywords=loader.get_tag_keyword_list())
-        self.processor.setup_regex_parser(regex_exp=loader.get_log_line_regex())
+        log_line_regex = loader.get_log_line_regex()
+        if log_line_regex is None:
+            log_line_regex = 'date,time,process,thread,level,tag,message = "(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): (.*?)$"'
+            print("you don't provide 'log_line-regex' for parse each line on file, so we use this one as default:")
+            print(log_line_regex + "\n")
+        self.processor.setup_regex_parser(regex_exp=log_line_regex)
 
     def color_line(self, line):
         msg_key, line_buf, match_precondition = self.processor.process(line)
@@ -82,8 +88,6 @@ class LogFileParser:
             need_read_stream.close()
             self.logStreams.pop(popup_index)
 
-
-
     def process(self):
         origin_index = 0
         for path in self.filePaths:
@@ -98,4 +102,3 @@ class LogFileParser:
             selected_line = self.cacheLines.pop(min_index)
             self.color_line(selected_line)
             self.popup_cache_line(min_index)
-            
