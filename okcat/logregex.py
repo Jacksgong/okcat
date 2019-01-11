@@ -40,7 +40,6 @@ class LogRegex:
         for key in process_key_order:
             key = key.strip()
             if key in ALL_SUPPORT_KEY:
-                print_warn("parse " + key)
                 self.key_order.append(key)
             elif key == DEPRECATED_DATE_KEY:
                 print_warn("please change 'data' to 'date' because this wrong word has been fixed on the current version, for the temporary we treat it as 'date'")
