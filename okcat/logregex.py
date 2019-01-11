@@ -22,10 +22,10 @@ from okcat.terminalcolor import print_warn
 
 __author__ = 'jacks.gong'
 
-# val = 'data,time,process,thread,level,tag,message = "(.\S*) (.\S*) (\d*) (\d*) ([V|I|D|W|E]) ([^:]*): (.*)"'
+# val = 'date,time,process,thread,level,tag,message = "(.\S*) (.\S*) (\d*) (\d*) ([V|I|D|W|E]) ([^:]*): (.*)"'
 REGEX_EXP_RE = re.compile(r"([^ =]*) *= *[\"|'](.*)[\"|']")
-ALL_SUPPORT_KEY = ["data", "time", "process", "thread", "level", "tag", "message"]
-
+ALL_SUPPORT_KEY = ["date", "time", "process", "thread", "level", "tag", "message"]
+DEPRECATED_DATE_KEY = "data"
 
 class LogRegex:
     key_order = list()
@@ -40,14 +40,18 @@ class LogRegex:
         for key in process_key_order:
             key = key.strip()
             if key in ALL_SUPPORT_KEY:
+                print_warn("parse " + key)
                 self.key_order.append(key)
+            elif key == DEPRECATED_DATE_KEY:
+                print_warn("please change 'data' to 'date' because this wrong word has been fixed on the current version, for the temporary we treat it as 'date'")
+                self.key_order.append('date')
             else:
                 print_warn("not support key[%s] only support: %s" % (key, ALL_SUPPORT_KEY))
 
         print("find regex: " + self.key_order.__str__() + " with " + regex)
 
     def parse(self, line):
-        data = None
+        date = None
         time = None
         process = None
         thread = None
@@ -58,15 +62,15 @@ class LogRegex:
         values = self.regex.match(line)
 
         if values is None:
-            return data, time, level, tag, process, thread, message
+            return date, time, level, tag, process, thread, message
 
-        # print values.groups().__str__()
+        # print(values.groups().__str__())
         i = 0
         for value in values.groups():
             key = self.key_order[i]
             i += 1
-            if key == "data":
-                data = value
+            if key == "date":
+                date = value
             elif key == "time":
                 time = value
             elif key == "process":
@@ -80,18 +84,18 @@ class LogRegex:
             elif key == "message":
                 message = value
 
-        return data, time, level, tag, process, thread, message
+        return date, time, level, tag, process, thread, message
 
-    contain_data = None
+    contain_date = None
     contain_time = None
     contain_thread = None
     contain_tag = None
     contain_level = None
 
-    def is_contain_data(self):
-        if self.contain_data is None:
-            self.contain_data = self.is_contain_key("data")
-        return self.contain_data
+    def is_contain_date(self):
+        if self.contain_date is None:
+            self.contain_date = self.is_contain_key("date")
+        return self.contain_date
 
     def is_contain_time(self):
         if self.contain_time is None:

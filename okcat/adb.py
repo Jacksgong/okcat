@@ -46,7 +46,7 @@ PID_KILL = re.compile(r'^Killing (\d+):([a-zA-Z0-9._:]+)/[^:]+: (.*)$')
 PID_LEAVE = re.compile(r'^No longer want ([a-zA-Z0-9._:]+) \(pid (\d+)\): .*$')
 PID_DEATH = re.compile(r'^Process ([a-zA-Z0-9._:]+) \(pid (\d+)\) has died.?$')
 
-ADB_LOG_REGEX_EXP = 'data,time,process,thread,level,tag,message="(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
+ADB_LOG_REGEX_EXP = 'date,time,process,thread,level,tag,message="(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
 
 BUG_LINE = re.compile(r'.*nativeGetEnabledTags.*')
 BACKTRACE_LINE = re.compile(r'^#(.*?)pc\s(.*?)$')

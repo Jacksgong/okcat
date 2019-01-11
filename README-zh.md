@@ -85,14 +85,14 @@ from: exist-yml-file-name
 # 如果不使用Android的ADB功能，便不需要配置
 package: com.liulishuo.filedownloader.demo
 
-# 配置对于一行日志的正则表达式，目前支持正则出data、time、level、tag、process、thread、message
+# 配置对于一行日志的正则表达式，目前支持正则出date、time、level、tag、process、thread、message
 # 不过不一定要全部提供，至少需要提供一个message
 # 如log-line-regex: 'message="(.\S*)"'
-log-line-regex: 'data,time,process,thread,level,tag,message = "(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
+log-line-regex: 'date,time,process,thread,level,tag,message = "(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
 
 # 在Android的ADB的情况下，我们是使用adb logcat -v brief -v threadtime
 # 一般情况下不需要adb-log-line-regex配置，我们已经有很完善的这块的正则，但是如果对这个需要特别定制便可以使用以下定制
-# adb-log-line-regex: 'data,time,process,thread,level,tag,message="(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
+# adb-log-line-regex: 'date,time,process,thread,level,tag,message="(.\S*) *(.\S*) *(\d*) *(\d*) *([A-Z]) *([^:]*): *(.*?)$"'
 
 # 分割正则列表
 # 可以提供多个正则表达式，对日志进行分割
@@ -113,7 +113,7 @@ trans-msg-map:
   # 原message: 'filedownloader:lifecycle:over xxx'
   # 转译后: '| 任务结束 | filedownloader:lifecycle:over xxx' 其中的'任务结束'会使用彩色的文字显示
   'filedownloader:lifecycle:over': '任务结束'
-  'fetch data with': '开始拉取'
+  'fetch date with': '开始拉取'
 
 # 标签转译表
 # 如果日志tag中包含表中key开头，将会使用彩色背景的文字在该message开头加上表中的value

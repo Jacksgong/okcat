@@ -1,4 +1,4 @@
-log-line-regex: 'data,time,process,thread,level,tag,message = "(\S*) *(\S*) *(\d*) *(\d*) ([A-Z]) ([^:]*): (.*?)$"'
+log-line-regex: 'date,time,process,thread,level,tag,message = "(\S*) *(\S*) *(\d*) *(\d*) ([A-Z]) ([^:]*): (.*?)$"'
 
 trans-msg-map:
   'Unknown': '未知'
