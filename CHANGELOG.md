@@ -1,3 +1,9 @@
+# 1.1.7
+
+2019-01-11
+
+- Fix: Fix wrong config field on the `log-line-regex` or `adb-log-line-regex` from 'data' to the correct one 'date'
+
 # 1.1.6
 
 2018-06-26
