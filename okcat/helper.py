@@ -72,4 +72,7 @@ def line_rstrip(line):
     if sys.version_info >= (3, 0):
         return line.rstrip()
     else:
-        return line.decode('utf-8').rstrip()
+        try:
+            return line.decode('utf-8').rstrip()
+        except UnicodeDecodeError:
+            return line.rstrip()
