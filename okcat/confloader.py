@@ -34,7 +34,7 @@ class ConfLoader:
     def load(self, yml_file_path):
         with open(handle_home_case(yml_file_path), 'r') as stream:
             try:
-                self.yml_conf = yaml.load(stream)
+                self.yml_conf = yaml.load(stream, yaml.SafeLoader)
                 from_conf_path = self.get_from()
                 if from_conf_path is not None:
                     self.from_yml_conf = ConfLoader()

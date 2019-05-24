@@ -57,8 +57,9 @@ class Trans:
         if self.hide_msg_list is None:
             return msg
 
-        if msg.__len__() > 100:
-            return msg
+        # print("get hide msg list: %s and len(%d)" % (self.hide_msg_list, len(msg)))
+        # if msg.__len__() > 100:
+        #     return msg
 
         for gray_msg in self.hide_msg_list:
             if msg.startswith(gray_msg):
