@@ -77,12 +77,21 @@ class ConfLoader:
         return self.get_value('separator-regex-list')
 
     def get_value(self, keyword):
-        if keyword not in self.yml_conf:
+        if keyword not in self.yml_conf or self.yml_conf[keyword] is None:
             if keyword != 'from' and self.from_yml_conf is not None:
                 return self.from_yml_conf.get_value(keyword)
             else:
                 return None
-        return self.yml_conf[keyword]
+
+        origin = self.yml_conf[keyword]
+        if self.from_yml_conf is not None and self.from_yml_conf.get_value(keyword) is not None:
+            values  = self.from_yml_conf.get_value(keyword)
+            if type(origin) == list:
+                origin.extend(values)
+            if type(origin) == dict:
+                origin.update(values)
+
+        return origin
 
     def dump(self):
         print('from: %s' % self.get_from())

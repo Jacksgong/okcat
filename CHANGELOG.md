@@ -1,3 +1,9 @@
+# 1.1.9
+
+2019-08-23
+
+- Feature: Implement 'from' keyword from config yaml file means append rather than overwrite.
+
 # 1.1.7
 
 2019-01-11
