@@ -64,6 +64,8 @@ class ConfLoader:
     def get_hide_msg_list(self):
         return self.get_value('hide-msg-list')
 
+    def get_ignore_msg_list(self):
+        return self.get_value('ignore-msg-list')
     def get_highlight_list(self):
         return self.get_value('highlight-list')
 
@@ -102,6 +104,7 @@ class ConfLoader:
         self.dump_unicode_map('trans-msg-map')
         self.dump_unicode_map('trans-tag-map')
         self.dump_list('hide-msg-list')
+        self.dump_list('ignore-msg-list')
         self.dump_list('highlight-list')
         self.dump_list('separator-regex-list')
 

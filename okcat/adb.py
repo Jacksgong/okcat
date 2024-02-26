@@ -106,6 +106,7 @@ class Adb:
             self.processor.setup_trans(trans_msg_map=conf_loader.get_trans_msg_map(),
                                        trans_tag_map=conf_loader.get_trans_tag_map(),
                                        hide_msg_list=conf_loader.get_hide_msg_list())
+            self.processor.setup_ignore(ignore_msg_list=conf_loader.get_ignore_msg_list())
             self.processor.setup_highlight(highlight_list=conf_loader.get_highlight_list())
             self.processor.setup_separator(separator_rex_list=conf_loader.get_separator_regex_list())
 
