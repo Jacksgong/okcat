@@ -172,6 +172,12 @@ POWERLEVEL9K_NODE_VERSION_BACKGROUND='022'
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 ```
 
+## Dev
+
+Import to PyCharm, and Set the Project Structure:
+
+![](https://github.com/Jacksgong/okcat/raw/master/arts/pycharm-build.jpg)
+
 ## LICENSE
 
 ```
