@@ -21,7 +21,7 @@ from setuptools import setup, find_packages
 # noinspection PyArgumentList
 setup(
     name="OkCat",
-    version="1.3.0",
+    version="1.4.0",
     packages=find_packages(exclude=['demo-conf', 'arts']),
 
     # Project uses reStructuredText, so ensure that the docutils get
@@ -56,6 +56,9 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
     entry_points={
         'console_scripts': [

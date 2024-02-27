@@ -1,3 +1,9 @@
+# 1.4.0
+
+2024-02-27
+
+- Feature: Support `ignore-tag-list` and `ignore-msg-list` configuration to ignore messages by defined
+
 # 1.3.0
 
 2020-08-13
