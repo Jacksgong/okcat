@@ -61,6 +61,7 @@ class LogProcessor:
     # target_time = None
 
     ignore_msg_list = None
+    ignore_tag_list = None
 
     # tmp
     last_msg_key = None
@@ -73,8 +74,9 @@ class LogProcessor:
     def setup_trans(self, trans_msg_map, trans_tag_map, hide_msg_list):
         self.trans = Trans(trans_msg_map, trans_tag_map, hide_msg_list)
 
-    def setup_ignore(self, ignore_msg_list):
+    def setup_ignore(self, ignore_msg_list, ignore_tag_list):
         self.ignore_msg_list = ignore_msg_list
+        self.ignore_tag_list = ignore_tag_list
 
     def setup_separator(self, separator_rex_list):
         if separator_rex_list is not None:
@@ -137,6 +139,10 @@ class LogProcessor:
             for ignore_msg in self.ignore_msg_list:
                 if message.startswith(ignore_msg):
                     match_condition = False
+
+        if self.ignore_tag_list is not None:
+            if tag in self.ignore_tag_list:
+                match_condition = False
 
         if not match_condition:
             return None, None, None
