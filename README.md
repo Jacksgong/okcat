@@ -33,6 +33,8 @@ An powerful log processor.
 ![](https://github.com/Jacksgong/okcat/raw/master/arts/separate-demo.png)
 - ignore msg on logs:
 `when you provide such list, the msg start with provided msg will be ignored to printed`
+- ignore tag on logs:
+`when you provide such list, the tag in the list will be ignored to printed`
 
 ## How to Install
 
@@ -140,6 +142,11 @@ highlight-list:
 # when you provide such list, the msg start with provided msg will be ignored to printed 
 ignore-msg-list:
   - 'log start with this will be ignored' 
+
+# ignore tag list
+# when you provide such list, the tag in the list will be ignored to printed
+ignore-tag-list:
+  - 'tagToBeIgnored'
 ```
 
 #### 2. Execute
