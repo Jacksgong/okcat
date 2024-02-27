@@ -37,6 +37,8 @@ okcat 包名
 ![](https://github.com/Jacksgong/okcat/raw/master/arts/hide-msg-demo.png)
 - 对连续的日志进行分割
 ![](https://github.com/Jacksgong/okcat/raw/master/arts/separate-demo.png)
+- 忽略一些日志
+`以提供的字段开头的日志将会被直接忽略`
 
 ## 如何安装
 
@@ -138,6 +140,11 @@ highlight-list:
   - 'Url['
   - 'Tag['
   - 'range['
+  
+# 忽略日志列表
+# 以提供的字段开头的日志将会被直接忽略
+ignore-msg-list:
+  - 'log start with this will be ignored'
 ```
 
 #### 2. 执行

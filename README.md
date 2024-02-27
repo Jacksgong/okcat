@@ -31,6 +31,8 @@ An powerful log processor.
 ![](https://github.com/Jacksgong/okcat/raw/master/arts/hide-msg-demo.png)
 - separate logs
 ![](https://github.com/Jacksgong/okcat/raw/master/arts/separate-demo.png)
+- ignore msg on logs:
+`when you provide such list, the msg start with provided msg will be ignored to printed`
 
 ## How to Install
 
@@ -133,6 +135,11 @@ highlight-list:
   - 'Url['
   - 'Tag['
   - 'range['
+
+# ignore message list
+# when you provide such list, the msg start with provided msg will be ignored to printed 
+ignore-msg-list:
+  - 'log start with this will be ignored' 
 ```
 
 #### 2. Execute
